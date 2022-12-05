@@ -4,6 +4,11 @@ kubectl delete -n grpl-test GrappleApi mygrapi 2>/dev/null
 kubectl delete objects -l crossplane.io/claim-name=mygrapi 2>/dev/null
 kubectl delete crd customresourcedefinition.apiextensions.k8s.io/objects.kubernetes.crossplane.io 2>/dev/null
 
+kubectl delete release -l crossplane.io/claim-name=mygrapi 2>/dev/null
+kubectl delete crd customresourcedefinition.apiextensions.k8s.io/releases.helm.crossplane.io 2>/dev/null
+
+sleep 5
+
 kubectl delete ns ${TESTNS} 2>/dev/null
 
 echo "delete all compositions"
@@ -18,14 +23,19 @@ for i in $(kubectl get configuration -o name); do kubectl delete $i 2>/dev/null;
 echo "delete all providers"
 for i in $(kubectl get providers -o name); do kubectl delete $i 2>/dev/null; done
 
-echo "delete all providerconfigs"
-kubectl delete providerconfig.kubernetes.crossplane.io/kubernetes-provider 2>/dev/null
-
 echo "cleanup previous builds"
 rm -R target 2>/dev/null
 
 echo "uninstall crossplane"
 helm uninstall --namespace ${CPSYS} crossplane --wait 2>/dev/null
 kubectl delete namespace ${CPSYS} 2>/dev/null
+
+echo "delete cluster roles"
+kubectl delete clusterrolebinding crossplane-provider-kubernetes-admin-binding 2>/dev/null
+kubectl delete clusterrolebinding crossplane-provider-helm-admin-binding 2>/dev/null
+
+echo "delete all providerconfigs"
+kubectl delete providerconfig.kubernetes.crossplane.io/kubernetes-provider 2>/dev/null
+kubectl delete providerconfig.helm.crossplane.io/helm-provider-config 2>/dev/null
 
 

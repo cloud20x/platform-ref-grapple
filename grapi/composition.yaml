@@ -11,29 +11,6 @@ spec:
     apiVersion: gsf.grpl.io/v1alpha1
     kind: CompositeGrappleApi
   resources:
-    - base:
-        apiVersion: kubernetes.crossplane.io/v1alpha1
-        kind: Object
-        spec:
-          forProvider:
-            manifest:
-              apiVersion: v1
-              kind: Pod
-              metadata:
-                name: mypod
-                namespace: grpl-test
-              spec:
-                containers:
-                - image: nginx:latest
-                  name: mypod
-          writeConnectionSecretsToRef: 
-            namespace: grpl-test
-            name: mypod-secret
-          providerConfigRef: 
-            name: kubernetes-provider
-      patches:
-        - fromFieldPath: metadata.namespace
-          toFieldPath: metadata.namespace
     # - base:
     #     apiVersion: kubernetes.crossplane.io/v1alpha1
     #     kind: Object
@@ -54,6 +31,57 @@ spec:
     #         name: mypod-secret
     #       providerConfigRef: 
     #         name: kubernetes-provider
-    #   # patches:
-    #   #   - fromFieldPath: spec.id
-    #   #     toFieldPath: metadata.labels[net
+    #   patches:
+    #     - fromFieldPath: metadata.namespace
+    #       toFieldPath: metadata.namespace
+    - base:
+        apiVersion: helm.crossplane.io/v1beta1
+        kind: Release
+        metadata:
+          annotations: 
+            crossplane.io/external-name: wordpress
+        spec:
+          forProvider:
+            chart:
+              name: wordpress
+              repository: https://turkenh.github.io/bitnami-charts
+              version: 9.5.1
+            namespace: # patched
+            values:
+              persistence:
+                enabled: false
+              mariadb:
+                enabled: false
+              # externalDatabase:
+              #   create: true
+              #   database: wordpress
+              #   port: 3306
+            # set: 
+            #   - name: externalDatabase.host
+            #     valueFrom: 
+            #       secretKeyRef: 
+            #         name: 
+            #         namespace: crossplane-system
+            #         key: endpoint
+            #   - name: externalDatabase.user
+            #     valueFrom: 
+            #       secretKeyRef: 
+            #         name: 
+            #         namespace: crossplane-system
+            #         key: username
+            #   - name: externalDatabase.password
+            #     valueFrom: 
+            #       secretKeyRef: 
+            #         name: 
+            #         namespace: crossplane-system
+            #         key: password
+          writeConnectionSecretsToRef: 
+            namespace: grpl-test
+            name: myrelease-secret
+          providerConfigRef: 
+            name: helm-provider-config
+      patches:
+        - fromFieldPath: spec.claimRef.namespace
+          toFieldPath: spec.forProvider.namespace
+          policy:
+            fromFieldPath: Required

@@ -19,6 +19,7 @@ apiVersion: gsf.grpl.io/v1alpha1
 kind: GrappleApi
 metadata:
   name: mygrapi
+  namespace: ${TESTNS}
 spec:
   id: mygrapiid
 EOF
