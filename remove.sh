@@ -35,6 +35,8 @@ kubectl delete clusterrolebinding crossplane-provider-kubernetes-admin-binding 2
 kubectl delete clusterrolebinding crossplane-provider-helm-admin-binding 2>/dev/null
 
 echo "delete all providerconfigs"
+for i in $(kubectl get providerconfigusages.kubernetes.crossplane.io -o name 2>/dev/null); do kubectl delete $i; done 
+for i in $(kubectl get providerconfigusages.helm.crossplane.io -o name 2>/dev/null); do kubectl delete $i; done 
 kubectl delete providerconfig.kubernetes.crossplane.io/kubernetes-provider 2>/dev/null
 kubectl delete providerconfig.helm.crossplane.io/helm-provider-config 2>/dev/null
 

@@ -30,6 +30,7 @@ spec:
     #         namespace: grpl-test
     #         name: mypod-secret
     #       providerConfigRef: 
+    #         # name: providerconfigs.kubernetes.crossplane.io/kubernetes-provider
     #         name: kubernetes-provider
     #   patches:
     #     - fromFieldPath: metadata.namespace
@@ -79,6 +80,7 @@ spec:
             namespace: grpl-test
             name: myrelease-secret
           providerConfigRef: 
+            # name: providerconfigs.helm.crossplane.io/helm-provider-config
             name: helm-provider-config
       patches:
         - fromFieldPath: spec.claimRef.namespace
