@@ -13,7 +13,7 @@ CRD=composition/grapi.gsf.grpl.io && echo "wait for ${CRD} to be deployed:" && u
 
 echo "check composition is available"
 
-echo "deploy the test case"
+echo "deploy the test cases"
 cat <<EOF | kubectl apply -n ${TESTNS} -f -
 apiVersion: gsf.grpl.io/v1alpha1
 kind: GrappleApi
@@ -21,8 +21,18 @@ metadata:
   name: mygrapi
   namespace: ${TESTNS}
 spec:
-  id: mygrapiid
+  name: mygrapiid
 EOF
+
+echo "deploy grapi test cases"
+TESTPATH=test/grapi
+for i in $(ls ${TESTPATH}/*.yaml | sed "s,${TESTPATH}/,,g"); do
+  n=$(echo ${i} | sed "s,.yaml,,g")
+  ns=gat-${n:0:3}
+  kubectl create ns ${ns} 2>/dev/null
+  kubectl apply -n ${ns} -f ${TESTPATH}/${i}
+done
+
 
 echo "display status of packages and XRDs"
 kubectl get pkg

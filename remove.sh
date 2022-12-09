@@ -4,6 +4,15 @@ kubectl delete -n grpl-test GrappleApi mygrapi 2>/dev/null
 kubectl delete objects -l crossplane.io/claim-name=mygrapi 2>/dev/null
 kubectl delete crd customresourcedefinition.apiextensions.k8s.io/objects.kubernetes.crossplane.io 2>/dev/null
 
+echo "remove all grapi test cases"
+TESTPATH=test/grapi
+for i in $(ls ${TESTPATH}/*.yaml | sed "s,${TESTPATH}/,,g"); do
+  n=$(echo ${i} | sed "s,.yaml,,g")
+  ns=gat-${n:0:3}
+  kubectl delete -n ${ns} -f ${TESTPATH}/${i} 2>/dev/null
+  kubectl delete ns ${ns} 2>/dev/null
+done
+
 kubectl delete release -l crossplane.io/claim-name=mygrapi 2>/dev/null
 kubectl delete crd customresourcedefinition.apiextensions.k8s.io/releases.helm.crossplane.io 2>/dev/null
 
