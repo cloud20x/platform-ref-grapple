@@ -115,62 +115,60 @@ spec:
           toFieldPath: spec.forProvider.values.name
           policy:
             fromFieldPath: Required
-        - fromFieldPath: spec.claimRef.grapiversion
+        - fromFieldPath: spec.grapiversion
           toFieldPath: spec.forProvider.values.grapiversion
-        - fromFieldPath: spec.claimRef.clusterdomain
+        - fromFieldPath: spec.clusterdomain
           toFieldPath: spec.forProvider.values.clusterdomain
-        - fromFieldPath: spec.claimRef.ssl
+        - fromFieldPath: spec.ssl
           toFieldPath: spec.forProvider.values.ssl
-        - fromFieldPath: spec.claimRef.sslissuer
+        - fromFieldPath: spec.sslissuer
           toFieldPath: spec.forProvider.values.sslissuer
-        - fromFieldPath: spec.claimRef.sslissuer
+        - fromFieldPath: spec.sslissuer
           toFieldPath: spec.forProvider.values.sslissuer
-        - fromFieldPath: spec.claimRef.buildimages
+        - fromFieldPath: spec.buildimages
           toFieldPath: spec.forProvider.values.buildimages
-          policy:
-            fromFieldPath: Required
-        - fromFieldPath: spec.claimRef.buildimagecache
+        - fromFieldPath: spec.buildimagecache
           toFieldPath: spec.forProvider.values.buildimagecache
-        - fromFieldPath: spec.claimRef.runimages
+        - fromFieldPath: spec.runimages
           toFieldPath: spec.forProvider.values.runimages
-        - fromFieldPath: spec.claimRef.deployimages
+        - fromFieldPath: spec.deployimages
           toFieldPath: spec.forProvider.values.deployimages
-        - fromFieldPath: spec.claimRef.imagetag
+        - fromFieldPath: spec.imagetag
           toFieldPath: spec.forProvider.values.imagetag
-        - fromFieldPath: spec.claimRef.beimage
+        - fromFieldPath: spec.beimage
           toFieldPath: spec.forProvider.values.beimage
-        - fromFieldPath: spec.claimRef.beimagetag
+        - fromFieldPath: spec.beimagetag
           toFieldPath: spec.forProvider.values.beimagetag
-        - fromFieldPath: spec.claimRef.rediscache
+        - fromFieldPath: spec.rediscache
           toFieldPath: spec.forProvider.values.rediscache
-        - fromFieldPath: spec.claimRef.translations
+        - fromFieldPath: spec.translations
           toFieldPath: spec.forProvider.values.translations
-        - fromFieldPath: spec.claimRef.apiregistry
+        - fromFieldPath: spec.apiregistry
           toFieldPath: spec.forProvider.values.apiregistry
-        - fromFieldPath: spec.claimRef.graphql
+        - fromFieldPath: spec.graphql
           toFieldPath: spec.forProvider.values.graphql
-        - fromFieldPath: spec.claimRef.monitoring
+        - fromFieldPath: spec.monitoring
           toFieldPath: spec.forProvider.values.monitoring
-        - fromFieldPath: spec.claimRef.discoveredrepos
+        - fromFieldPath: spec.discoveredrepos
           toFieldPath: spec.forProvider.values.discoveredrepos
-        - fromFieldPath: spec.claimRef.externalsecrets
+        - fromFieldPath: spec.externalsecrets
           toFieldPath: spec.forProvider.values.externalsecrets
 
-        - fromFieldPath: spec.claimRef.datasources
+        - fromFieldPath: spec.datasources
           toFieldPath: spec.forProvider.values.datasources
-        - fromFieldPath: spec.claimRef.discoveries
+        - fromFieldPath: spec.discoveries
           toFieldPath: spec.forProvider.values.discoveries
-        - fromFieldPath: spec.claimRef.models
+        - fromFieldPath: spec.models
           toFieldPath: spec.forProvider.values.models
-        - fromFieldPath: spec.claimRef.relations
+        - fromFieldPath: spec.relations
           toFieldPath: spec.forProvider.values.relations
-        - fromFieldPath: spec.claimRef.serviceproviders
+        - fromFieldPath: spec.serviceproviders
           toFieldPath: spec.forProvider.values.serviceproviders
-        - fromFieldPath: spec.claimRef.openapis
+        - fromFieldPath: spec.openapis
           toFieldPath: spec.forProvider.values.openapis
-        - fromFieldPath: spec.claimRef.restcruds
+        - fromFieldPath: spec.restcruds
           toFieldPath: spec.forProvider.values.restcruds
-        - fromFieldPath: spec.claimRef.repositories
+        - fromFieldPath: spec.repositories
           toFieldPath: spec.forProvider.values.repositories
-        - fromFieldPath: spec.claimRef.controllers
+        - fromFieldPath: spec.controllers
           toFieldPath: spec.forProvider.values.controllers
