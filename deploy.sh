@@ -38,7 +38,7 @@ EOF
 fi
 if ${PROVIDERHELM}; then
   # ensure that crossplane helm user has permissions:
-  SA=$(kubectl -n ${CPSYS} get sa -o name | grep provider-helm | sed -e 's|serviceaccount\/|crossplane-system:|g' | sed "s|crossplane-system|${CPSYS}|g")
+  SA=$(kubectl -n ${CPSYS} get sa -o name | grep provider-helm | sed -e 's|serviceaccount\/|grpl-system:|g' | sed "s|grpl-system|${CPSYS}|g")
   kubectl create clusterrolebinding crossplane-provider-helm-admin-binding --clusterrole cluster-admin --serviceaccount="${SA}" 
   # temporary - need for a better solution
 
