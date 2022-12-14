@@ -1,14 +1,14 @@
 apiVersion: apiextensions.crossplane.io/v1
 kind: Composition
 metadata:
-  name: grapi.gsf.grpl.io
+  name: grapi.grsf.grpl.io
   labels:
-    crossplane.io/xrd: compositegrappleapis.gsf.grpl.io
+    crossplane.io/xrd: compositegrappleapis.grsf.grpl.io
     provider: grapi
 spec:
   # writeConnectionSecretsToNamespace: grpl-system
   compositeTypeRef:
-    apiVersion: gsf.grpl.io/v1alpha1
+    apiVersion: grsf.grpl.io/v1alpha1
     kind: CompositeGrappleApi
   resources:
     # - base:

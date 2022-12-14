@@ -1,7 +1,7 @@
 apiVersion: apiextensions.crossplane.io/v1
 kind: CompositeResourceDefinition
 metadata:
-  name: compositegrappleapis.gsf.grpl.io
+  name: compositegrappleapis.grsf.grpl.io
   # annotations:
   #   upbound.io/ui-schema: |-
   #     ---
@@ -54,7 +54,7 @@ spec:
     - grplapi
     - grplapis
     - grappleapi
-  group: gsf.grpl.io
+  group: grsf.grpl.io
   names:
     kind: CompositeGrappleApi
     plural: compositegrappleapis

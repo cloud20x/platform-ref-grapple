@@ -1,6 +1,8 @@
 
 ./remove.sh
 
+./install.sh
+
 ./build.sh
 ./publish.sh
 

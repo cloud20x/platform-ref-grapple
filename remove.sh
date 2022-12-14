@@ -1,7 +1,9 @@
 . ./vars.sh
 
 kubectl delete -n grpl-test GrappleApi mygrapi 2>/dev/null
-kubectl delete objects -l crossplane.io/claim-name=mygrapi 2>/dev/null
+kubectl delete -n grpl-system grsf 2>/dev/null
+# kubectl delete objects -l crossplane.io/claim-name=mygrapi 2>/dev/null
+# kubectl delete releases -l crossplane.io/claim-name=mygrapi 2>/dev/null
 kubectl delete crd customresourcedefinition.apiextensions.k8s.io/objects.kubernetes.crossplane.io 2>/dev/null
 
 echo "remove all grapi test cases"

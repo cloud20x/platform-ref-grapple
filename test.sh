@@ -8,14 +8,14 @@ for i in $(kubectl get pkg -o name); do kubectl wait --for=condition=Healthy $i;
 echo "check xrds are available"
 CRD=grapi && echo "wait for ${CRD} to be deployed:" && until kubectl explain ${CRD} >/dev/null 2>&1; do echo -n .; sleep 1; done && echo "${CRD} deployed"
 CRD=compositegrappleapis && echo "wait for ${CRD} to be deployed:" && until kubectl explain ${CRD} >/dev/null 2>&1; do echo -n .; sleep 1; done && echo "${CRD} deployed"
-CRD=composition/grapi.gsf.grpl.io && echo "wait for ${CRD} to be deployed:" && until kubectl get ${CRD} >/dev/null 2>&1; do echo -n .; sleep 1; done && echo "${CRD} deployed"
+CRD=composition/grapi.grsf.grpl.io && echo "wait for ${CRD} to be deployed:" && until kubectl get ${CRD} >/dev/null 2>&1; do echo -n .; sleep 1; done && echo "${CRD} deployed"
 
 
 echo "check composition is available"
 
 echo "deploy the test cases"
 cat <<EOF | kubectl apply -n ${TESTNS} -f -
-apiVersion: gsf.grpl.io/v1alpha1
+apiVersion: grsf.grpl.io/v1alpha1
 kind: GrappleApi
 metadata:
   name: mygrapi
