@@ -37,6 +37,9 @@ spec:
               properties:
                 name:
                   type: string
+                clusterdomain:
+                  description: 'Please specify here the clusterdomain of the target cluster'
+                  type: string
                 external-secrets:
                   type: object
                   x-kubernetes-preserve-unknown-fields: true

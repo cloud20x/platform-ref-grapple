@@ -1,9 +1,9 @@
 . ./vars.sh
 
 echo "install grpl"
-helm upgrade --install ${CPSYS} oci://public.ecr.aws/p7h7z5g3/grpl-init -n ${CPSYS} --create-namespace --wait
+helm upgrade --install grpl-init oci://public.ecr.aws/p7h7z5g3/grpl-init -n ${CPSYS} --create-namespace --wait
 sleep 10
-helm upgrade --install ${CPSYS} oci://public.ecr.aws/p7h7z5g3/grpl -n ${CPSYS} --create-namespace --wait
+helm upgrade --install grpl oci://public.ecr.aws/p7h7z5g3/grpl -n ${CPSYS} --create-namespace --wait
 
 # echo "deploy the provider config"
 # cat <<EOF | kubectl apply -n ${CPSYS} -f -
