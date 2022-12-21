@@ -2,7 +2,7 @@
 
 echo "install grpl"
 helm upgrade --install grpl-init oci://public.ecr.aws/p7h7z5g3/grpl-init -n ${CPSYS} --create-namespace --wait
-kubectl crossplane install configuration grpl/grsf
+kubectl crossplane update configuration grsf grpl/grsf || kubectl crossplane install configuration grpl/grsf
 
 # echo "install grpl"
 # helm upgrade --install grpl-init oci://public.ecr.aws/p7h7z5g3/grpl-init -n ${CPSYS} --create-namespace --wait
