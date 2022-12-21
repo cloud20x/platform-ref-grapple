@@ -2,9 +2,14 @@
 
 echo "install grpl"
 helm upgrade --install grpl-init oci://public.ecr.aws/p7h7z5g3/grpl-init -n ${CPSYS} --create-namespace --wait
-sleep 10
-helm upgrade --install grpl oci://public.ecr.aws/p7h7z5g3/grpl -n ${CPSYS} --create-namespace --wait
+kubectl crossplane install configuration grpl/grsf
 
+# echo "install grpl"
+# helm upgrade --install grpl-init oci://public.ecr.aws/p7h7z5g3/grpl-init -n ${CPSYS} --create-namespace --wait
+# sleep 10
+# helm upgrade --install grpl oci://public.ecr.aws/p7h7z5g3/grpl -n ${CPSYS} --create-namespace --wait
+
+# echo "install grpl"
 # echo "deploy the provider config"
 # cat <<EOF | kubectl apply -n ${CPSYS} -f -
 # apiVersion: kubernetes.crossplane.io/v1alpha1
