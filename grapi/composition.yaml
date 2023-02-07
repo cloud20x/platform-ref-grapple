@@ -52,6 +52,7 @@ spec:
               name: # patched
               grapiversion: "0.0.1"
               clusterdomain: ""
+              ingress: false
               ssl: false
               sslissuer: letsencrypt-prod-cloud20x
               buildimages: false
@@ -77,6 +78,37 @@ spec:
               restcruds: []
               repositories: []
               controllers: []
+            set: 
+              - name: grapiversion
+                valueFrom:
+                  secretKeyRef: 
+                    name: grsf-config
+                    namespace: grpl-system
+                    key: grapiversion
+              - name: clusterdomain
+                valueFrom:
+                  secretKeyRef: 
+                    name: grsf-config
+                    namespace: grpl-system
+                    key: clusterdomain
+              - name: sslissuer
+                valueFrom:
+                  secretKeyRef: 
+                    name: grsf-config
+                    namespace: grpl-system
+                    key: sslissuer
+              - name: beimage
+                valueFrom:
+                  secretKeyRef: 
+                    name: grsf-config
+                    namespace: grpl-system
+                    key: beimage
+              - name: beimagetag
+                valueFrom:
+                  secretKeyRef: 
+                    name: grsf-config
+                    namespace: grpl-system
+                    key: beimagetag
             # set: 
             #   - name: externalDatabase.host
             #     valueFrom: 
@@ -119,6 +151,8 @@ spec:
           toFieldPath: spec.forProvider.values.grapiversion
         - fromFieldPath: spec.clusterdomain
           toFieldPath: spec.forProvider.values.clusterdomain
+        - fromFieldPath: spec.ingress
+          toFieldPath: spec.forProvider.values.ingress
         - fromFieldPath: spec.ssl
           toFieldPath: spec.forProvider.values.ssl
         - fromFieldPath: spec.sslissuer

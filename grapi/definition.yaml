@@ -84,6 +84,9 @@ spec:
                 clusterdomain:
                   description: 'Please specify here the clusterdomain of the target cluster'
                   type: string
+                ingress:
+                  description: 'Please specify here if ingress shall be enabled for the deployment'
+                  type: boolean
                 ssl:
                   description: 'Please specify here if ssl shall be configured for the deployment'
                   type: boolean
