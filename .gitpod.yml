@@ -19,7 +19,7 @@ tasks:
       # name: "cloud20x"
   - command: | 
       civo apikey save cloud20x ${civokey} && civo region current ${civoregion} 
-      civo k8s create ${name}-${civocluster} --size=${civosize} --nodes=${civonodes} ${civoapps} -e ${civosg} || true
+      if ! civo k8s show ${name}-${stage} >/dev/null 2>&1; then civo k8s create ${name}-${civocluster} --size=${civosize} --nodes=${civonodes} ${civoapps} -e ${civosg} || true; fi
       civo k8s ls
       until [ $(civo k8s show -o custom -f Status ${name}-${civocluster}) = "ACTIVE" ]; do echo -n "."; sleep 3; done
       civo k8s config ${name}-${civocluster} --save --merge --switch
@@ -28,6 +28,7 @@ tasks:
       ./deploy.sh
     env:
       name: "grpl"
+      stage: "dev"
       civocluster: "dev"
       civosize: g4s.kube.medium
       civonodes: 5
