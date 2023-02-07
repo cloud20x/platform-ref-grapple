@@ -67,7 +67,7 @@ spec:
               graphql: false
               monitoring: false
               discoveredrepos: true
-              externalsecrets: []
+              external-secrets: []
               datasources: []
               discoveries: []
               models: []
@@ -152,7 +152,7 @@ spec:
         - fromFieldPath: spec.discoveredrepos
           toFieldPath: spec.forProvider.values.discoveredrepos
         - fromFieldPath: spec.externalsecrets
-          toFieldPath: spec.forProvider.values.externalsecrets
+          toFieldPath: spec.forProvider.values.external-secrets
 
         - fromFieldPath: spec.datasources
           toFieldPath: spec.forProvider.values.datasources
