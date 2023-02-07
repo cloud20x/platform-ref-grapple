@@ -151,8 +151,8 @@ spec:
           toFieldPath: spec.forProvider.values.monitoring
         - fromFieldPath: spec.discoveredrepos
           toFieldPath: spec.forProvider.values.discoveredrepos
-        - fromFieldPath: spec.externalsecrets
-          toFieldPath: spec.forProvider.values.external-secrets
+        # - fromFieldPath: spec.externalsecrets
+        #   toFieldPath: spec.forProvider.values.external-secrets
 
         - fromFieldPath: spec.datasources
           toFieldPath: spec.forProvider.values.datasources

@@ -1,6 +1,7 @@
 CPSYS=grpl-system
 PACKAGE=grsf.xpkg
 CONFIGPKG=grpl/grsf
+VERSION=0.0.1
 TESTNS=grpl-test
 
 PROVIDERKUBERNETES=false
