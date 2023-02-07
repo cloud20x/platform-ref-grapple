@@ -30,11 +30,11 @@ tasks:
       name: "grpl"
       stage: "dev"
       civocluster: "dev"
-      civosize: g4s.kube.medium
-      civonodes: 5
+      civosize: g4s.kube.large
+      civonodes: 1
       civosg: d8a8ad37-2ed9-49e1-93df-d2e1c66493b2
       civoregion: FRA1
-      civoapps: "--applications Traefik-v2-nodeport"
+      civoapps: "--applications Traefik-v2-nodeport,civo-cluster-autoscaler "
   # - name: test 
   #   command: |
   #     for i in $(ls helm-charts/patrick); do echo $i; helm dep up helm-charts/patrick/$i; helm upgrade --install $i helm-charts/patrick/$i -n ht-$i --create-namespace;  done
