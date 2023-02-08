@@ -93,6 +93,11 @@ spec:
                 sslissuer:
                   description: 'Please specify here the ssl issuer'
                   type: string
+                auth:	
+                  description: 'Please specify here if authentication shall be enabled for the deployment (default: false)'	
+                  type: boolean	
+                auth_write_only:	
+                  description: 'Please specify here if authentication shall be enabled for write only endpoints (default: false)'
                 buildimages:
                   description: 'Shall images be built (pre-baked) for this deployment?'
                   type: boolean
