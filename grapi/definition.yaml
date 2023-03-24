@@ -64,7 +64,7 @@ spec:
     - xgrplapi
     - xgrplapis
     - xgrappleapi
-    - xgrappleaps
+    - xgrappleapis
   versions:
     - name: v1alpha1
       served: true
