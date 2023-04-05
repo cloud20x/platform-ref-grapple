@@ -269,7 +269,7 @@ spec:
                       content:
                         description: please specify the content for the object
                         type: string
-                patching:
+                patches:
                   description: 'Please add here a patch script (base64 encoded) that shall run after lb4 creation'
                   type: array
                   items:
