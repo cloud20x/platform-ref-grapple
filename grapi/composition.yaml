@@ -78,6 +78,7 @@ spec:
               restcruds: []
               repositories: []
               controllers: []
+              patches: []
             set: 
               - name: grapiversion
                 valueFrom:
@@ -206,3 +207,5 @@ spec:
           toFieldPath: spec.forProvider.values.repositories
         - fromFieldPath: spec.controllers
           toFieldPath: spec.forProvider.values.controllers
+        - fromFieldPath: spec.patches
+          toFieldPath: spec.forProvider.values.patches
