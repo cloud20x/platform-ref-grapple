@@ -61,7 +61,7 @@ spec:
               deployimages: false
               imagetag: ""
               beimage: patrickriegler/loopback
-              beimagetag: "v0.53"
+              beimagetag: "v0.57"
               rediscache: false
               translations: false
               apiregistry: false
