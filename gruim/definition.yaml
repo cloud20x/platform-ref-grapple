@@ -1,0 +1,160 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: CompositeResourceDefinition
+metadata:
+  name: compositegrappleauimodules.grsf.grpl.io
+  # annotations:
+  #   upbound.io/ui-schema: |-
+  #     ---
+  #     configSections:
+  #     - title: Network Info
+  #       description: Information about this network fabric
+  #       items:
+  #       - name: id
+  #         controlType: singleInput
+  #         type: string
+  #         path: ".spec.id"
+  #         title: Network ID
+  #         description: Network ID that other objects will use to refer (and connect) to this network fabric
+  #         default: multik8s-network
+  #         validation:
+  #         - required: true
+  #           customError: Network ID is required.
+  #       - name: provider
+  #         controlType: singleSelect
+  #         path: ".spec.compositionSelector.matchLabels[provider]"
+  #         title: Cloud Provider
+  #         description: Select which cloud provider this network should be created in.
+  #         default: AWS
+  #         enum:
+  #         - AWS
+  #         - GCP
+  #         validation:
+  #         - required: true
+  #           customError: Cloud provider is required.
+  #     - title: Cluster Info
+  #       description: The cluster used with this network fabric
+  #       items:
+  #       - name: clusterRef
+  #         controlType: singleInput
+  #         type: string
+  #         path: ".spec.clusterRef.id"
+  #         title: Cluster Ref
+  #         description: ID of the Cluster object that will use this network fabric
+  #         default: multik8s-cluster
+  #         validation:
+  #         - required: true
+  #           customError: Cluster ref is required.
+spec:
+  claimNames:
+    kind: GrappleUiModule
+    plural: grappleuimodules
+    shortNames:
+    - gruim
+    - gruimodule
+    - gruims
+    - gruimodules
+    - grpluim
+    - grpluimodule
+    - grpluims
+    - grpluimodules
+    - grappleuimodule
+  group: grsf.grpl.io
+  names:
+    kind: CompositeGrappleUiModule
+    plural: compositegrappleuimodules
+    shortNames:
+    - xgruim
+    - xgruimodule
+    - xgruims
+    - xgruimodules
+    - xgrpluim
+    - xgrpluimodule
+    - xgrpluims
+    - xgrpluimodules
+    - xgrappleuimodule
+    - xgrappleuimodules
+  versions:
+    - name: v1alpha1
+      served: true
+      referenceable: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                name:
+                  type: string
+                gruimversion:
+                  description: 'Please specify here the version of gruim'
+                  type: string
+                clusterdomain:
+                  description: 'Please specify here the clusterdomain of the target cluster'
+                  type: string
+                ingress:
+                  description: 'Please specify here if ingress shall be enabled for the deployment'
+                  type: boolean
+                ssl:
+                  description: 'Please specify here if ssl shall be configured for the deployment'
+                  type: boolean
+                sslissuer:
+                  description: 'Please specify here the ssl issuer'
+                  type: string
+                buildimages:
+                  description: 'Shall images be built (pre-baked) for this deployment?'
+                  type: boolean
+                buildimagecache:
+                  description: 'Shall a cache be used for building the images?'
+                  type: boolean
+                runimages:
+                  description: 'Shall the deployment be run directly?'
+                  type: boolean
+                deployimages:
+                  description: 'Shall the (pre-baked) images be deployed? (if an imagetag is specified)'
+                  type: boolean
+                imagetag:
+                  description: 'Please specify here the imagetag that shall be deployed'
+                  type: string
+                uiimage:
+                  description: 'Please specify here the image repository for the ui modules'
+                  type: string
+                uiimagetag:
+                  description: 'Please specify here the image tag for the ui modules'
+                  type: string
+                uimodules:
+                  description: 'Please specify whether to deploy ui modules or only the be (api)'
+                  type: boolean
+                monitoring:
+                  description: 'Please specify whether monitoring should be enabled'
+                  type: boolean
+                ### settings for the UI
+                openapi:
+                  description: 'Please specify here the url for the openapi specification'
+                  type: string
+                endpoint:
+                  description: 'Please specify here the endpoint for the openapi service'
+                  type: string
+                style:
+                  description: 'Please specify here the style for the ui modules'
+                  type: string
+                config:
+                  description: 'Please specify here the config for the ui modules'
+                  type: string
+                additionalpackages:
+                  description: 'Please specify here the additional packags that need to be installed for the ui modules'
+                  type: string
+                custommodules:
+                  description: 'Please add here base64 encoded custom modules that shall be injected into'
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        description: please specify the name for the custom ui modules
+                        type: string
+                      content:
+                        description: please specify the content/code for the custom ui modules
+                        type: string
+                # required:
+                #   - id
