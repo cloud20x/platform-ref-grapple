@@ -111,10 +111,18 @@ spec:
           toFieldPath: metadata.annotations[crossplane.io/external-name]
           policy:
             fromFieldPath: Required
+          transforms:
+            - type: string
+              string:
+                fmt: "%s-gruim"
         - fromFieldPath: spec.claimRef.name
           toFieldPath: spec.forProvider.values.name
           policy:
             fromFieldPath: Required
+          transforms:
+            - type: string
+              string:
+                fmt: "%s-gruim"
         - fromFieldPath: spec.gruimversion
           toFieldPath: spec.forProvider.values.gruimversion
         - fromFieldPath: spec.clusterdomain
