@@ -8,7 +8,7 @@ spec:
     plural: grappleapplicationsets
     shortNames:
     - as
-    - ApplicationSet
+    - applicationset
     - gras
     - grplas
     - grappleas
@@ -24,7 +24,7 @@ spec:
     plural: compositegrappleapplicationsets
     shortNames:
     - xas
-    - xApplicationSet
+    - xapplicationset
     - xgras
     - xgrplas
     - xgrappleas
