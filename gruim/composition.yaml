@@ -40,6 +40,7 @@ spec:
               uiimagetag: "v0.57"
               uimodules: true
               monitoring: false
+              mapi: ""
               openapi: "https://ht-classicmodels-classicmodelsas-as.uat.grapple.solutions/openapi.json"
               endpoint: "https://ht-classicmodels-classicmodelsas-as.uat.grapple.solutions"
               style: ""
@@ -154,6 +155,8 @@ spec:
         - fromFieldPath: spec.monitoring
           toFieldPath: spec.forProvider.values.monitoring
 
+        - fromFieldPath: spec.mapi
+          toFieldPath: spec.forProvider.values.mapi
         - fromFieldPath: spec.openapi
           toFieldPath: spec.forProvider.values.openapi
         - fromFieldPath: spec.endpoint

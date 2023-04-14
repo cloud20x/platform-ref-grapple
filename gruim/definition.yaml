@@ -129,6 +129,9 @@ spec:
                   description: 'Please specify whether monitoring should be enabled'
                   type: boolean
                 ### settings for the UI
+                mapi:
+                  description: 'Please specify here the name of the mapi that contains definitions for the API behind the gruim'
+                  type: string
                 openapi:
                   description: 'Please specify here the url for the openapi specification'
                   type: string
