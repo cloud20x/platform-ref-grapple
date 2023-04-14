@@ -1,0 +1,80 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: CompositeResourceDefinition
+metadata:
+  name: compositegrappleapplicationsets.grsf.grpl.io
+spec:
+  claimNames:
+    kind: GrappleApplicationSet
+    plural: grappleapplicationsets
+    shortNames:
+    - as
+    - ApplicationSet
+    - gras
+    - grplas
+    - grappleas
+    - grapplicationset
+    - grplapplicationset
+    - grappleapplicationset
+    - grapplicationsets
+    - grplapplicationsets
+    - grappleapplicationsets
+  group: grsf.grpl.io
+  names:
+    kind: CompositeGrappleApplicationSet
+    plural: compositegrappleapplicationsets
+    shortNames:
+    - xas
+    - xApplicationSet
+    - xgras
+    - xgrplas
+    - xgrappleas
+    - xgrapplicationset
+    - xgrplapplicationset
+    - xgrappleapplicationset
+    - xgrapplicationsets
+    - xgrplapplicationsets
+    - xgrappleapplicationsets
+  versions:
+    - name: v1alpha1
+      served: true
+      referenceable: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                name:
+                  type: string
+                grasversion:
+                  description: 'Please specify here the version of the grapple ApplicationSet'
+                  type: string
+                grapi:
+                  description: 'Please add here the grapis for this gras ApplicationSet'
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        description: please specify the name for the object
+                        type: string
+                      spec:
+                        description: please specify the spec for the grapi - verify against "kubectl explain grapi.spec"
+                        type: object
+                        # allows to specify anything in the object... no verification whatsoever...
+                        x-kubernetes-preserve-unknown-fields: true  
+                gruim:
+                  description: 'Please add here the gruims for this gras ApplicationSet'
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        description: please specify the name for the object
+                        type: string
+                      spec:
+                        description: please specify the spec for the gruim - verify against "kubectl explain gruim.spec"
+                        type: object
+                        # allows to specify anything in the object... no verification whatsoever...
+                        x-kubernetes-preserve-unknown-fields: true  
