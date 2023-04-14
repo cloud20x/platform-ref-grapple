@@ -27,8 +27,8 @@ spec:
             values:
               name: # patched
               grasversion: # patched
-              grapi: []
-              gruim: []
+              grapis: []
+              gruims: []
             # set: 
             #   - name: externalDatabase.host
             #     valueFrom: 

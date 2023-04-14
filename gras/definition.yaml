@@ -50,7 +50,7 @@ spec:
                 grasversion:
                   description: 'Please specify here the version of the grapple ApplicationSet'
                   type: string
-                grapi:
+                grapis:
                   description: 'Please add here the grapis for this gras ApplicationSet'
                   type: array
                   items:
@@ -64,7 +64,7 @@ spec:
                         type: object
                         # allows to specify anything in the object... no verification whatsoever...
                         x-kubernetes-preserve-unknown-fields: true  
-                gruim:
+                gruims:
                   description: 'Please add here the gruims for this gras ApplicationSet'
                   type: array
                   items:
