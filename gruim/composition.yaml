@@ -36,8 +36,8 @@ spec:
               runimages: true
               deployimages: false
               imagetag: ""
-              uiimage: patrickriegler/loopback
-              uiimagetag: "v0.57"
+              uiimage: patrickriegler/cloud20x-ui-modules
+              uiimagetag: "cloud20x-ui-modules---develop"
               uimodules: true
               monitoring: false
               mapi: ""

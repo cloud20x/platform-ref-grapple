@@ -61,7 +61,7 @@ spec:
               deployimages: false
               imagetag: ""
               beimage: patrickriegler/loopback
-              beimagetag: "v0.57"
+              beimagetag: "v0.61"
               rediscache: false
               translations: false
               apiregistry: false
@@ -78,7 +78,8 @@ spec:
               restcruds: []
               repositories: []
               controllers: []
-              patches: []
+              prepatches: []
+              postpatches: []
             set: 
               - name: grapiversion
                 valueFrom:
@@ -215,5 +216,7 @@ spec:
           toFieldPath: spec.forProvider.values.repositories
         - fromFieldPath: spec.controllers
           toFieldPath: spec.forProvider.values.controllers
-        - fromFieldPath: spec.patches
-          toFieldPath: spec.forProvider.values.patches
+        - fromFieldPath: spec.prepatches
+          toFieldPath: spec.forProvider.values.prepatches
+        - fromFieldPath: spec.postpatches
+          toFieldPath: spec.forProvider.values.postpatches

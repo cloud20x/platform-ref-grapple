@@ -269,7 +269,19 @@ spec:
                       content:
                         description: please specify the content for the object
                         type: string
-                patches:
+                prepatches:
+                  description: 'Please add here a patch script (base64 encoded) that shall run before lb4 relation creation'
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        description: please specify the name for the object
+                        type: string
+                      content:
+                        description: please specify the content for the object
+                        type: string
+                postpatches:
                   description: 'Please add here a patch script (base64 encoded) that shall run after lb4 creation'
                   type: array
                   items:
