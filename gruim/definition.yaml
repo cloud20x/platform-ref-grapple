@@ -49,6 +49,10 @@ spec:
     kind: GrappleUiModule
     plural: grappleuimodules
     shortNames:
+    - uim
+    - uims
+    - uimodule
+    - uimodules
     - gruim
     - gruimodule
     - gruims
@@ -63,6 +67,10 @@ spec:
     kind: CompositeGrappleUiModule
     plural: compositegrappleuimodules
     shortNames:
+    - xuim
+    - xuims
+    - xuimodule
+    - xuimodules
     - xgruim
     - xgruimodule
     - xgruims

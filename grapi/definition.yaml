@@ -49,6 +49,8 @@ spec:
     kind: GrappleApi
     plural: grappleapis
     shortNames:
+    - api
+    - apis
     - grapi
     - grapis
     - grplapi
@@ -59,6 +61,8 @@ spec:
     kind: CompositeGrappleApi
     plural: compositegrappleapis
     shortNames:
+    - xapi
+    - xapis
     - xgrapi
     - xgrapis
     - xgrplapi
