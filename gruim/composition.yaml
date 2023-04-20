@@ -26,6 +26,7 @@ spec:
             namespace: # patched
             values:
               name: # patched
+              asname: ""
               gruimversion: "0.0.1"
               clusterdomain: ""
               ingress: false

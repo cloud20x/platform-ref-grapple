@@ -50,6 +50,7 @@ spec:
             namespace: # patched
             values:
               name: # patched
+              asname: ""
               grapiversion: "0.0.1"
               clusterdomain: ""
               ingress: false
@@ -157,6 +158,8 @@ spec:
             - type: string
               string:
                 fmt: "%s-grapi"
+        - fromFieldPath: spec.claimRef.asname
+          toFieldPath: spec.forProvider.values.asname
         - fromFieldPath: spec.grapiversion
           toFieldPath: spec.forProvider.values.grapiversion
         - fromFieldPath: spec.clusterdomain

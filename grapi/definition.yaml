@@ -82,6 +82,8 @@ spec:
               properties:
                 name:
                   type: string
+                asname:
+                  type: string
                 grapiversion:
                   description: 'Please specify here the version of grapi'
                   type: string
