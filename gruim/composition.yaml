@@ -125,7 +125,7 @@ spec:
             - type: string
               string:
                 fmt: "%s-gruim"
-        - fromFieldPath: spec.claimRef.asname
+        - fromFieldPath: spec.asname
           toFieldPath: spec.forProvider.values.asname
         - fromFieldPath: spec.gruimversion
           toFieldPath: spec.forProvider.values.gruimversion

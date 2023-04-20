@@ -158,7 +158,7 @@ spec:
             - type: string
               string:
                 fmt: "%s-grapi"
-        - fromFieldPath: spec.claimRef.asname
+        - fromFieldPath: spec.asname
           toFieldPath: spec.forProvider.values.asname
         - fromFieldPath: spec.grapiversion
           toFieldPath: spec.forProvider.values.grapiversion
