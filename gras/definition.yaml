@@ -47,6 +47,8 @@ spec:
               properties:
                 name:
                   type: string
+                asname:
+                  type: string
                 grasversion:
                   description: 'Please specify here the version of the grapple ApplicationSet'
                   type: string
