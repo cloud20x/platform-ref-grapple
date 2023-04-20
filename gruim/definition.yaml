@@ -94,6 +94,8 @@ spec:
               properties:
                 name:
                   type: string
+                asname:
+                  type: string
                 gruimversion:
                   description: 'Please specify here the version of gruim'
                   type: string
