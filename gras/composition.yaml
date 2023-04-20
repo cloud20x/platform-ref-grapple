@@ -26,6 +26,7 @@ spec:
             namespace: # patched
             values:
               name: # patched
+              asname: # patched
               grasversion: # patched
               grapis: []
               gruims: []
@@ -75,6 +76,10 @@ spec:
             - type: string
               string:
                 fmt: "%s-gras"
+        - fromFieldPath: spec.claimRef.name
+          toFieldPath: spec.forProvider.values.asname
+          policy:
+            fromFieldPath: Required
         - fromFieldPath: spec.grasversion
           toFieldPath: spec.forProvider.values.grasversion
         - fromFieldPath: spec.grapis
