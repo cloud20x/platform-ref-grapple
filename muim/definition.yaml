@@ -55,6 +55,8 @@ spec:
     - manageduims
     - manageduimodule
     - manageduimodules
+    - muimodule
+    - muimodules
   group: grsf.grpl.io
   names:
     kind: CompositeManagedUIModule
