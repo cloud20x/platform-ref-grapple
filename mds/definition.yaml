@@ -93,6 +93,12 @@ spec:
                   description: 'Please specify here the port number (e.g. 3306)'
                   type: string
                   default: "3306"
+                username:
+                  description: 'Please specify here the username'
+                  type: string
+                password:
+                  description: 'Please specify here the password'
+                  type: string
                 connectionsecret:
                   description: 'Please specify here the name of the connection secret'
                   type: string
