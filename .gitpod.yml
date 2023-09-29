@@ -1,4 +1,4 @@
-image: grpl/gitpod-container:v0.4
+image: grpl/gitpod-container:v0.5
 tasks:
   - before: |
       docker login -u $dockeruser -p $dockerpw

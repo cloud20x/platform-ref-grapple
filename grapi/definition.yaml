@@ -191,6 +191,13 @@ spec:
                       content:
                         description: please specify the content for the object
                         type: string
+                      spec:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                          asname:
+                            type: string
                 models:
                   description: 'Please add here the link to all the models that shall be deployed within this grapi'
                   type: array
