@@ -224,6 +224,9 @@ spec:
                           optionalId:
                             description: optionalId
                             type: boolean
+                          disableCamelCase:
+                            description: disableCamelCase
+                            type: boolean
                 models:
                   description: 'Please add here the link to all the models that shall be deployed within this grapi'
                   type: array

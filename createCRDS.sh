@@ -14,7 +14,7 @@ dstypes=("mysql" "postgres" "model" "repository" "rest-crud" "service" "openapi"
 echo
 echo
 
-exit
+# exit
 
 echo "----"
 BASELOCATION=".spec.versions[0].schema.openAPIV3Schema.properties.spec.properties"
@@ -39,7 +39,17 @@ for z in ${clis[*]}; do
     echo "Patching: $name --- $type"
     yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties += {\"${name}\": { \"description\": \"${name}\", \"type\": \"${type}\" } }" grapi/definition.yaml
   done
-  rm ${z}.js
+  if [ "${crd}" = "discoveries" ]; then
+    name=disableCamelCase
+    type=boolean
+    echo "Patching: $name --- $type"
+    yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties += {\"${name}\": { \"description\": \"${name}\", \"type\": \"${type}\" } }" grapi/definition.yaml
+    # name=yes
+    # type=string
+    # echo "Patching: $name --- $type"
+    # yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties += {\"${name}\": { \"description\": \"${name}\", \"type\": \"${type}\" } }" grapi/definition.yaml
+  fi
+  # rm ${z}.js
   ((c++))
 done
 
