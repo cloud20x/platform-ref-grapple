@@ -49,26 +49,26 @@ spec:
     kind: GrappleApi
     plural: grappleapis
     shortNames:
-    - api
-    - apis
-    - grapi
-    - grapis
-    - grplapi
-    - grplapis
-    - grappleapi
+      - api
+      - apis
+      - grapi
+      - grapis
+      - grplapi
+      - grplapis
+      - grappleapi
   group: grsf.grpl.io
   names:
     kind: CompositeGrappleApi
     plural: compositegrappleapis
     shortNames:
-    - xapi
-    - xapis
-    - xgrapi
-    - xgrapis
-    - xgrplapi
-    - xgrplapis
-    - xgrappleapi
-    - xgrappleapis
+      - xapi
+      - xapis
+      - xgrapi
+      - xgrapis
+      - xgrplapi
+      - xgrplapis
+      - xgrappleapi
+      - xgrappleapis
   versions:
     - name: v1alpha1
       served: true
@@ -166,7 +166,7 @@ spec:
                         description: please specify the spec for the externalsecrets - verify against kubectl get crd externalsecrets.external-secrets.io -o yaml
                         type: object
                         # allows to specify anything in the object... no verification whatsoever...
-                        x-kubernetes-preserve-unknown-fields: true                      
+                        x-kubernetes-preserve-unknown-fields: true
                 datasources:
                   description: 'Please add here the link to all the datasources that shall be deployed within this grapi'
                   type: array
@@ -179,6 +179,12 @@ spec:
                       content:
                         description: please specify the content for the object
                         type: string
+                      spec:
+                        type: object
+                        properties:
+                          datasourcesproperty:
+                            description: datasourcesproperty
+                            type: string
                 discoveries:
                   description: 'Please add here the link to all the discoveries that shall be deployed within this grapi'
                   type: array
@@ -194,10 +200,30 @@ spec:
                       spec:
                         type: object
                         properties:
-                          name:
+                          dataSource:
+                            description: dataSource
                             type: string
-                          asname:
+                          views:
+                            description: views
+                            type: boolean
+                          relations:
+                            description: relations
+                            type: boolean
+                          schema:
+                            description: schema
                             type: string
+                          all:
+                            description: all
+                            type: boolean
+                          outDir:
+                            description: outDir
+                            type: string
+                          models:
+                            description: models
+                            type: string
+                          optionalId:
+                            description: optionalId
+                            type: boolean
                 models:
                   description: 'Please add here the link to all the models that shall be deployed within this grapi'
                   type: array
@@ -210,6 +236,21 @@ spec:
                       content:
                         description: please specify the content for the object
                         type: string
+                      spec:
+                        type: object
+                        properties:
+                          base:
+                            description: base
+                            type: string
+                          dataSource:
+                            description: dataSource
+                            type: string
+                          table:
+                            description: table
+                            type: string
+                          schema:
+                            description: schema
+                            type: string
                 relations:
                   description: 'Please add here the link to all the relations that shall be deployed within this grapi'
                   type: array
@@ -222,6 +263,57 @@ spec:
                       content:
                         description: please specify the content for the object
                         type: string
+                      spec:
+                        type: object
+                        properties:
+                          relationType:
+                            description: relationType
+                            type: string
+                          sourceModel:
+                            description: sourceModel
+                            type: string
+                          customReferenceKeys:
+                            description: customReferenceKeys
+                            type: string
+                          destinationModel:
+                            description: destinationModel
+                            type: string
+                          throughModel:
+                            description: throughModel
+                            type: string
+                          sourceModelPrimaryKey:
+                            description: sourceModelPrimaryKey
+                            type: string
+                          sourceModelPrimaryKeyType:
+                            description: sourceModelPrimaryKeyType
+                            type: string
+                          destinationModelPrimaryKey:
+                            description: destinationModelPrimaryKey
+                            type: string
+                          destinationModelPrimaryKeyType:
+                            description: destinationModelPrimaryKeyType
+                            type: string
+                          sourceKeyOnThrough:
+                            description: sourceKeyOnThrough
+                            type: string
+                          targetKeyOnThrough:
+                            description: targetKeyOnThrough
+                            type: string
+                          defaultForeignKeyName:
+                            description: defaultForeignKeyName
+                            type: string
+                          foreignKeyName:
+                            description: foreignKeyName
+                            type: string
+                          relationName:
+                            description: relationName
+                            type: string
+                          defaultRelationName:
+                            description: defaultRelationName
+                            type: string
+                          registerInclusionResolver:
+                            description: registerInclusionResolver
+                            type: boolean
                 serviceproviders:
                   description: 'Please add here the link to all the serviceproviders that shall be deployed within this grapi'
                   type: array
@@ -234,6 +326,12 @@ spec:
                       content:
                         description: please specify the content for the object
                         type: string
+                      spec:
+                        type: object
+                        properties:
+                          serviceprovidersproperty:
+                            description: serviceprovidersproperty
+                            type: string
                 openapis:
                   description: 'Please add here the link to all the openapis that shall be deployed within this grapi'
                   type: array
@@ -246,6 +344,33 @@ spec:
                       content:
                         description: please specify the content for the object
                         type: string
+                      spec:
+                        type: object
+                        properties:
+                          url:
+                            description: url
+                            type: string
+                          validate:
+                            description: validate
+                            type: boolean
+                          server:
+                            description: server
+                            type: boolean
+                          client:
+                            description: client
+                            type: boolean
+                          datasource:
+                            description: datasource
+                            type: string
+                          baseModel:
+                            description: baseModel
+                            type: string
+                          promote-anonymous-schemas:
+                            description: promote-anonymous-schemas
+                            type: boolean
+                          prefix:
+                            description: prefix
+                            type: string
                 restcruds:
                   description: 'Please add here the link to all the restcruds that shall be deployed within this grapi'
                   type: array
@@ -258,6 +383,21 @@ spec:
                       content:
                         description: please specify the content for the object
                         type: string
+                      spec:
+                        type: object
+                        properties:
+                          model:
+                            description: model
+                            type: string
+                          datasource:
+                            description: datasource
+                            type: string
+                          basePath:
+                            description: basePath
+                            type: string
+                          readonly:
+                            description: readonly
+                            type: boolean
                 repositories:
                   description: 'Please add here the link to all the repositories that shall be deployed within this grapi'
                   type: array
@@ -270,6 +410,21 @@ spec:
                       content:
                         description: please specify the content for the object
                         type: string
+                      spec:
+                        type: object
+                        properties:
+                          model:
+                            description: model
+                            type: string
+                          id:
+                            description: id
+                            type: string
+                          datasource:
+                            description: datasource
+                            type: string
+                          repositoryBaseClass:
+                            description: repositoryBaseClass
+                            type: string
                 controllers:
                   description: 'Please add here the link to all the controllers that shall be deployed within this grapi'
                   type: array
@@ -282,6 +437,12 @@ spec:
                       content:
                         description: please specify the content for the object
                         type: string
+                      spec:
+                        type: object
+                        properties:
+                          controllerType:
+                            description: controllerType
+                            type: string
                 prepatches:
                   description: 'Please add here a patch script (base64 encoded) that shall run before lb4 relation creation'
                   type: array
@@ -306,34 +467,54 @@ spec:
                       content:
                         description: please specify the content for the object
                         type: string
-
-                # ### settings for the UI
-                # # openapi:
-                # #   description: 'Please specify here the url for the openapi specification'
-                # #   type: string
-                # # endpoint:
-                # #   description: 'Please specify here the endpoint for the openapi service'
-                # #   type: string
-                # style:
-                #   description: 'Please specify here the style for the ui modules'
-                #   type: string
-                # config:
-                #   description: 'Please specify here the config for the ui modules'
-                #   type: string
-                # additionalpackages:
-                #   description: 'Please specify here the additional packags that need to be installed for the ui modules'
-                #   type: string
-                # custommodules:
-                #   description: 'Please add here base64 encoded custom modules that shall be injected into'
-                #   type: array
-                #   items:
-                #     type: object
-                #     properties:
-                #       name:
-                #         description: please specify the name for the custom ui modules
-                #         type: string
-                #       content:
-                #         description: please specify the content/code for the custom ui modules
-                #         type: string
-                # required:
-                #   - id
+                services:
+                  description: 'Please add here the link to all the services that shall be deployed within this grapi'
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        description: please specify the name for the object
+                        type: string
+                      content:
+                        description: please specify the content for the object
+                        type: string
+                      spec:
+                        type: object
+                        properties:
+                          type:
+                            description: type
+                            type: string
+                          datasource:
+                            description: datasource
+                            type: string
+# ### settings for the UI
+# # openapi:
+# #   description: 'Please specify here the url for the openapi specification'
+# #   type: string
+# # endpoint:
+# #   description: 'Please specify here the endpoint for the openapi service'
+# #   type: string
+# style:
+#   description: 'Please specify here the style for the ui modules'
+#   type: string
+# config:
+#   description: 'Please specify here the config for the ui modules'
+#   type: string
+# additionalpackages:
+#   description: 'Please specify here the additional packags that need to be installed for the ui modules'
+#   type: string
+# custommodules:
+#   description: 'Please add here base64 encoded custom modules that shall be injected into'
+#   type: array
+#   items:
+#     type: object
+#     properties:
+#       name:
+#         description: please specify the name for the custom ui modules
+#         type: string
+#       content:
+#         description: please specify the content/code for the custom ui modules
+#         type: string
+# required:
+#   - id
