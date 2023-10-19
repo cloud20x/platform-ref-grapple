@@ -183,48 +183,62 @@ spec:
                         type: object
                         properties:
                           mysql:
-                            description: specs for data source type mysql
+                            description: specs for datasource type mysql
                             type: object
                             properties:
+                              name:
+                                description: please provide a name for the datasource
+                                type: string
+                              connector:
+                                description: please provide the connector type for the datasource
+                                type: string
+                                default: mysql
                               database:
-                                description: spec for database for data source mysql
+                                description: spec for database for datasource mysql
                                 type: string
                               host:
-                                description: spec for host for data source mysql
+                                description: spec for host for datasource mysql
                                 type: string
                               password:
-                                description: spec for password for data source mysql
+                                description: spec for password for datasource mysql
                                 type: string
                               port:
-                                description: spec for port for data source mysql
+                                description: spec for port for datasource mysql
                                 type: string
                               url:
-                                description: spec for url for data source mysql
+                                description: spec for url for datasource mysql
                                 type: string
                               user:
-                                description: spec for user for data source mysql
+                                description: spec for user for datasource mysql
                                 type: string
                           postgresql:
-                            description: specs for data source type postgresql
+                            description: specs for datasource type postgresql
                             type: object
                             properties:
+                              name:
+                                description: please provide a name for the datasource
+                                type: string
+                              connector:
+                                description: please provide the connector type for the datasource
+                                type: string
+                                default: postgresql
                               database:
-                                description: spec for database for data source postgresql
+                                description: spec for database for datasource postgresql
                                 type: string
                               host:
-                                description: spec for host for data source postgresql
+                                description: spec for host for datasource postgresql
                                 type: string
                               password:
-                                description: spec for password for data source postgresql
+                                description: spec for password for datasource postgresql
                                 type: string
                               port:
-                                description: spec for port for data source postgresql
+                                description: spec for port for datasource postgresql
                                 type: string
                               url:
-                                description: spec for url for data source postgresql
+                                description: spec for url for datasource postgresql
                                 type: string
                               user:
-                                description: spec for user for data source postgresql
+                                description: spec for user for datasource postgresql
                                 type: string
                 discoveries:
                   description: 'Please add here the link to all the discoveries that shall be deployed within this grapi'

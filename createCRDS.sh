@@ -16,12 +16,19 @@ for z in ${dstypes[*]}; do
 
   dstype=$z
   echo "extend CRD for datasource type: $dstype"
-  desc="specs for data source type ${dstype}"
+  desc="specs for datasource type ${dstype}"
   yq -i "${BASELOCATIONDS}.properties.spec.properties += {\"${dstype}\": { \"description\": \"${desc}\", \"type\": \"object\", \"properties\": {} } }" grapi/definition.yaml
-
+  setting="name"
+  desc="please provide a name for the datasource"
+  type="string"
+  yq -i "${BASELOCATIONDS}.properties.spec.properties.${dstype}.properties += {\"${setting}\": { \"description\": \"${desc}\", \"type\": \"${type}\" } }" grapi/definition.yaml
+  setting="connector"
+  desc="please provide the connector type for the datasource"
+  type="string"
+  yq -i "${BASELOCATIONDS}.properties.spec.properties.${dstype}.properties += {\"${setting}\": { \"description\": \"${desc}\", \"type\": \"${type}\", \"default\": \"${dstype}\" } }" grapi/definition.yaml
   cat connectors.json | jq -r ".${dstype}.settings | keys[]" | while read -r setting; do 
     # echo "do something with ${setting}"; 
-    desc="spec for ${setting} for data source ${dstype}"
+    desc="spec for ${setting} for datasource ${dstype}"
     type="string"
     yq -i "${BASELOCATIONDS}.properties.spec.properties.${dstype}.properties += {\"${setting}\": { \"description\": \"${desc}\", \"type\": \"${type}\" } }" grapi/definition.yaml
   done
