@@ -7,12 +7,28 @@ fi
 echo "----"
 echo "extend CRD for DataSources"
 
-dstypes=("mysql" "postgres" "model" "repository" "rest-crud" "service" "openapi" "relation") 
+docker run --rm -it patrickriegler/loopback:v0.93 cat /usr/local/lib/node_modules/\@loopback/cli/lib/connectors.json > connectors.json
 
+BASELOCATIONDS=".spec.versions[0].schema.openAPIV3Schema.properties.spec.properties.datasources.items"
+dstypes=("mysql" "postgresql") 
+yq -i "del(${BASELOCATIONDS}.properties.spec.properties.*)" grapi/definition.yaml
+for z in ${dstypes[*]}; do 
 
+  dstype=$z
+  echo "extend CRD for datasource type: $dstype"
+  desc="specs for data source type ${dstype}"
+  yq -i "${BASELOCATIONDS}.properties.spec.properties += {\"${dstype}\": { \"description\": \"${desc}\", \"type\": \"object\", \"properties\": {} } }" grapi/definition.yaml
 
-echo
-echo
+  cat connectors.json | jq -r ".${dstype}.settings | keys[]" | while read -r setting; do 
+    # echo "do something with ${setting}"; 
+    desc="spec for ${setting} for data source ${dstype}"
+    type="string"
+    yq -i "${BASELOCATIONDS}.properties.spec.properties.${dstype}.properties += {\"${setting}\": { \"description\": \"${desc}\", \"type\": \"${type}\" } }" grapi/definition.yaml
+  done
+
+done
+
+rm connectors.json
 
 # exit
 
@@ -32,12 +48,20 @@ for z in ${clis[*]}; do
   echo "crd: $crd"
   docker run --rm -it patrickriegler/loopback:v0.93 cat /usr/local/lib/node_modules/\@loopback/cli/generators/${cli}/index.js > ${cli}.js
   yq -i "del(${BASELOCATION}.${crd}.items.properties.spec.properties.*)" grapi/definition.yaml
+  # names are probably not even necessary here...
+  # if [ "${crd}" != "nonamesfor" ]; then
+  #   name=name
+  #   type=string
+  #   echo "Patching: $name --- $type"
+  #   yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties += {\"${name}\": { \"description\": \"${name}\", \"type\": \"${type}\" } }" grapi/definition.yaml
+  # fi
   for i in $(grep "this.option(" ${cli}.js | sed "s,this.option(',," | sed "s,'\, {.*,,g" | tr -d '\r'); do
     name=$i
     # echo grep "this.option(.*${name}" -A6 ${cli}.js 
     type=$(grep "this.option(.*${name}" -A6 ${cli}.js | grep -m1 "type:" | sed "s,^.*type: ,,g" | sed "s|,.*||g" | sed "s|}.*||g" | tr '[:upper:]' '[:lower:]')
+    desc=$(grep "this.option(.*${name}" -A6 ${cli}.js | grep -m1 -A2 "description:" | sed "s,^.*description: g.f(,,g" | grep -o "'.*'" | head -n 1 | sed "s,',,g")
     echo "Patching: $name --- $type"
-    yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties += {\"${name}\": { \"description\": \"${name}\", \"type\": \"${type}\" } }" grapi/definition.yaml
+    yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties += {\"${name}\": { \"description\": \"${desc}\", \"type\": \"${type}\" } }" grapi/definition.yaml
   done
   if [ "${crd}" = "discoveries" ]; then
     name=disableCamelCase
@@ -48,8 +72,9 @@ for z in ${clis[*]}; do
     # type=string
     # echo "Patching: $name --- $type"
     # yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties += {\"${name}\": { \"description\": \"${name}\", \"type\": \"${type}\" } }" grapi/definition.yaml
+    # yq -i "with(${BASELOCATION}.${crd}.items.properties.spec.properties.yes ; . | key style=\"single\" ) " grapi/definition.yaml
   fi
-  # rm ${z}.js
+  rm ${z}.js
   ((c++))
 done
 

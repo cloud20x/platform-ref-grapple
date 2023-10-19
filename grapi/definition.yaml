@@ -182,9 +182,50 @@ spec:
                       spec:
                         type: object
                         properties:
-                          datasourcesproperty:
-                            description: datasourcesproperty
-                            type: string
+                          mysql:
+                            description: specs for data source type mysql
+                            type: object
+                            properties:
+                              database:
+                                description: spec for database for data source mysql
+                                type: string
+                              host:
+                                description: spec for host for data source mysql
+                                type: string
+                              password:
+                                description: spec for password for data source mysql
+                                type: string
+                              port:
+                                description: spec for port for data source mysql
+                                type: string
+                              url:
+                                description: spec for url for data source mysql
+                                type: string
+                              user:
+                                description: spec for user for data source mysql
+                                type: string
+                          postgresql:
+                            description: specs for data source type postgresql
+                            type: object
+                            properties:
+                              database:
+                                description: spec for database for data source postgresql
+                                type: string
+                              host:
+                                description: spec for host for data source postgresql
+                                type: string
+                              password:
+                                description: spec for password for data source postgresql
+                                type: string
+                              port:
+                                description: spec for port for data source postgresql
+                                type: string
+                              url:
+                                description: spec for url for data source postgresql
+                                type: string
+                              user:
+                                description: spec for user for data source postgresql
+                                type: string
                 discoveries:
                   description: 'Please add here the link to all the discoveries that shall be deployed within this grapi'
                   type: array
@@ -201,28 +242,28 @@ spec:
                         type: object
                         properties:
                           dataSource:
-                            description: dataSource
+                            description: The name of the datasource to discover
                             type: string
                           views:
-                            description: views
+                            description: Boolean to discover views
                             type: boolean
                           relations:
-                            description: relations
+                            description: Discover and create relations
                             type: boolean
                           schema:
-                            description: schema
+                            description: Schema to discover
                             type: string
                           all:
-                            description: all
+                            description: Discover all models without prompting users to select
                             type: boolean
                           outDir:
-                            description: outDir
+                            description: Specify the directory into which the `model.model.ts` files will be placed
                             type: string
                           models:
-                            description: models
+                            description: Discover specific models without prompting users to select e.g:--models=table1,table2
                             type: string
                           optionalId:
-                            description: optionalId
+                            description: Boolean to mark id property as optional field
                             type: boolean
                           disableCamelCase:
                             description: disableCamelCase
@@ -243,16 +284,16 @@ spec:
                         type: object
                         properties:
                           base:
-                            description: base
+                            description: A valid based model
                             type: string
                           dataSource:
-                            description: dataSource
+                            description: The name of the dataSource which contains this model and suppots model discovery
                             type: string
                           table:
-                            description: table
+                            description: If discovering a model from a dataSource, specify the name of its table/view
                             type: string
                           schema:
-                            description: schema
+                            description: If discovering a model from a dataSource, specify the schema which contains it
                             type: string
                 relations:
                   description: 'Please add here the link to all the relations that shall be deployed within this grapi'
@@ -270,52 +311,52 @@ spec:
                         type: object
                         properties:
                           relationType:
-                            description: relationType
+                            description: Relation type
                             type: string
                           sourceModel:
-                            description: sourceModel
+                            description: Source model
                             type: string
                           customReferenceKeys:
-                            description: customReferenceKeys
+                            description: Destination model key
                             type: string
                           destinationModel:
-                            description: destinationModel
+                            description: Destination model key
                             type: string
                           throughModel:
-                            description: throughModel
+                            description: Through model
                             type: string
                           sourceModelPrimaryKey:
-                            description: sourceModelPrimaryKey
+                            description: Primary key on source model
                             type: string
                           sourceModelPrimaryKeyType:
-                            description: sourceModelPrimaryKeyType
+                            description: Type of the primary key on source model
                             type: string
                           destinationModelPrimaryKey:
-                            description: destinationModelPrimaryKey
+                            description: Primary key on destination model
                             type: string
                           destinationModelPrimaryKeyType:
-                            description: destinationModelPrimaryKeyType
+                            description: Type of the primary key on destination model
                             type: string
                           sourceKeyOnThrough:
-                            description: sourceKeyOnThrough
+                            description: Foreign key references source model on through model
                             type: string
                           targetKeyOnThrough:
-                            description: targetKeyOnThrough
+                            description: Foreign key references target model on through model
                             type: string
                           defaultForeignKeyName:
-                            description: defaultForeignKeyName
+                            description: default foreign key name
                             type: string
                           foreignKeyName:
-                            description: foreignKeyName
+                            description: Destination model foreign key name (optional, provide only when there is a custom foreign key)
                             type: string
                           relationName:
-                            description: relationName
+                            description: Relation name
                             type: string
                           defaultRelationName:
-                            description: defaultRelationName
+                            description: Default relation name
                             type: string
                           registerInclusionResolver:
-                            description: registerInclusionResolver
+                            description: Allow <sourceModel> queries to include data from related <destinationModel>
                             type: boolean
                 serviceproviders:
                   description: 'Please add here the link to all the serviceproviders that shall be deployed within this grapi'
@@ -351,28 +392,28 @@ spec:
                         type: object
                         properties:
                           url:
-                            description: url
+                            description: URL or file path of the OpenAPI spec
                             type: string
                           validate:
-                            description: validate
+                            description: Validate the OpenAPI spec
                             type: boolean
                           server:
-                            description: server
+                            description: Generate server-side controllers for the OpenAPI spec
                             type: boolean
                           client:
-                            description: client
+                            description: Generate client-side service proxies for the OpenAPI spec
                             type: boolean
                           datasource:
-                            description: datasource
+                            description: A valid datasource name for the OpenAPI endpoint
                             type: string
                           baseModel:
-                            description: baseModel
+                            description: Base model class
                             type: string
                           promote-anonymous-schemas:
-                            description: promote-anonymous-schemas
+                            description: Promote anonymous schemas as models
                             type: boolean
                           prefix:
-                            description: prefix
+                            description: Provide prefix to avoid duplication
                             type: string
                 restcruds:
                   description: 'Please add here the link to all the restcruds that shall be deployed within this grapi'
@@ -390,16 +431,16 @@ spec:
                         type: object
                         properties:
                           model:
-                            description: model
+                            description: A valid model name
                             type: string
                           datasource:
-                            description: datasource
+                            description: A valid datasource name
                             type: string
                           basePath:
-                            description: basePath
+                            description: A valid base path
                             type: string
                           readonly:
-                            description: readonly
+                            description: Create readonly APIs
                             type: boolean
                 repositories:
                   description: 'Please add here the link to all the repositories that shall be deployed within this grapi'
@@ -417,16 +458,16 @@ spec:
                         type: object
                         properties:
                           model:
-                            description: model
+                            description: A valid model name
                             type: string
                           id:
-                            description: id
+                            description: A valid ID property name for the specified model
                             type: string
                           datasource:
-                            description: datasource
+                            description: A valid datasource name
                             type: string
                           repositoryBaseClass:
-                            description: repositoryBaseClass
+                            description: A valid repository base class
                             type: string
                 controllers:
                   description: 'Please add here the link to all the controllers that shall be deployed within this grapi'
@@ -444,7 +485,7 @@ spec:
                         type: object
                         properties:
                           controllerType:
-                            description: controllerType
+                            description: Type for the %s
                             type: string
                 prepatches:
                   description: 'Please add here a patch script (base64 encoded) that shall run before lb4 relation creation'
@@ -486,10 +527,10 @@ spec:
                         type: object
                         properties:
                           type:
-                            description: type
+                            description: Service type - proxy, class or provider
                             type: string
                           datasource:
-                            description: datasource
+                            description: A valid datasource name
                             type: string
 # ### settings for the UI
 # # openapi:
