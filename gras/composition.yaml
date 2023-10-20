@@ -110,8 +110,8 @@ spec:
         #   toFieldPath: spec.forProvider.values.imagetag
         # - fromFieldPath: spec.beimage
         #   toFieldPath: spec.forProvider.values.beimage
-        # - fromFieldPath: spec.beimagetag
-        #   toFieldPath: spec.forProvider.values.beimagetag
+        - fromFieldPath: spec.claimRef.beimagetag
+          toFieldPath: spec.forProvider.values.beimagetag
         # - fromFieldPath: spec.rediscache
         #   toFieldPath: spec.forProvider.values.rediscache
         # - fromFieldPath: spec.translations

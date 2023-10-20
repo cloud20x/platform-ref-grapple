@@ -99,6 +99,9 @@ spec:
                 sslissuer:
                   description: 'Please specify here the ssl issuer'
                   type: string
+                disableexplorer:
+                  description: 'Please specify "true" if you want to disable the explorer (default: false)'
+                  type: boolean
                 auth:
                   description: 'Please specify here if authentication shall be enabled for the deployment (default: false)'
                   type: boolean
@@ -502,7 +505,31 @@ spec:
                             description: Type for the %s
                             type: string
                 prepatches:
-                  description: 'Please add here a patch script (base64 encoded) that shall run before lb4 relation creation'
+                  description: 'Please add here a patch script (base64 encoded) that shall run before datasource creation'
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        description: please specify the name for the object
+                        type: string
+                      content:
+                        description: please specify the content for the object
+                        type: string
+                prediscoverypatches:
+                  description: 'Please add here a patch script (base64 encoded) that shall run before datasource discovery'
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        description: please specify the name for the object
+                        type: string
+                      content:
+                        description: please specify the content for the object
+                        type: string
+                prerelationpatches:
+                  description: 'Please add here a patch script (base64 encoded) that shall run before relation creation'
                   type: array
                   items:
                     type: object
@@ -514,7 +541,7 @@ spec:
                         description: please specify the content for the object
                         type: string
                 postpatches:
-                  description: 'Please add here a patch script (base64 encoded) that shall run after lb4 creation'
+                  description: 'Please add here a patch script (base64 encoded) that shall run after backend creation'
                   type: array
                   items:
                     type: object

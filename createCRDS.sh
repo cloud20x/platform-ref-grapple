@@ -1,4 +1,6 @@
 
+. ./vars.sh
+
 if ! yq >/dev/null 2>&1; then
     sudo wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq &&\
         sudo chmod +x /usr/bin/yq
@@ -7,7 +9,7 @@ fi
 echo "----"
 echo "extend CRD for DataSources"
 
-docker run --rm -it patrickriegler/loopback:v0.93 cat /usr/local/lib/node_modules/\@loopback/cli/lib/connectors.json > connectors.json
+docker run --rm -it ${BEBASEIMAGE}:${BEBASEIMAGEVERSION} cat /usr/local/lib/node_modules/\@loopback/cli/lib/connectors.json > connectors.json
 
 BASELOCATIONDS=".spec.versions[0].schema.openAPIV3Schema.properties.spec.properties.datasources.items"
 dstypes=("mysql" "postgresql") 
@@ -53,7 +55,7 @@ for z in ${clis[*]}; do
   echo "extend CRD for $crd"
   echo "cli: $cli"
   echo "crd: $crd"
-  docker run --rm -it patrickriegler/loopback:v0.93 cat /usr/local/lib/node_modules/\@loopback/cli/generators/${cli}/index.js > ${cli}.js
+  docker run --rm -it ${BEBASEIMAGE}:${BEBASEIMAGEVERSION} cat /usr/local/lib/node_modules/\@loopback/cli/generators/${cli}/index.js > ${cli}.js
   yq -i "del(${BASELOCATION}.${crd}.items.properties.spec.properties.*)" grapi/definition.yaml
   # names are probably not even necessary here...
   # if [ "${crd}" != "nonamesfor" ]; then

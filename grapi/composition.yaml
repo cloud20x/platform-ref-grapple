@@ -46,7 +46,7 @@ spec:
             chart:
               name: grapi
               repository: oci://public.ecr.aws/p7h7z5g3
-              version: 0.1.1
+              version: 0.1.2
             namespace: # patched
             values:
               name: # patched
@@ -56,13 +56,14 @@ spec:
               ingress: false
               ssl: false
               sslissuer: letsencrypt-prod-cloud20x
+              disableexplorer: false
               buildimages: false
               buildimagecache: true
               runimages: true
               deployimages: false
               imagetag: ""
-              beimage: patrickriegler/loopback
-              beimagetag: "v0.61"
+              # beimage: patrickriegler/loopback
+              # beimagetag: v0.96
               rediscache: false
               translations: false
               apiregistry: false
@@ -80,6 +81,8 @@ spec:
               repositories: []
               controllers: []
               prepatches: []
+              prediscoverypatches: []
+              prerelationpatches: []
               postpatches: []
             set: 
               - name: grapiversion
@@ -100,13 +103,13 @@ spec:
                     name: grsf-config
                     namespace: grpl-system
                     key: sslissuer
-              - name: beimage
+              - name: beimage_config
                 valueFrom:
                   secretKeyRef: 
                     name: grsf-config
                     namespace: grpl-system
                     key: beimage
-              - name: beimagetag
+              - name: beimagetag_config
                 valueFrom:
                   secretKeyRef: 
                     name: grsf-config
@@ -172,6 +175,8 @@ spec:
           toFieldPath: spec.forProvider.values.sslissuer
         - fromFieldPath: spec.sslissuer
           toFieldPath: spec.forProvider.values.sslissuer
+        - fromFieldPath: spec.disableexplorer
+          toFieldPath: spec.forProvider.values.disableexplorer
         - fromFieldPath: spec.buildimages
           toFieldPath: spec.forProvider.values.buildimages
         - fromFieldPath: spec.buildimagecache
@@ -221,5 +226,9 @@ spec:
           toFieldPath: spec.forProvider.values.controllers
         - fromFieldPath: spec.prepatches
           toFieldPath: spec.forProvider.values.prepatches
+        - fromFieldPath: spec.prediscoverypatches
+          toFieldPath: spec.forProvider.values.prediscoverypatches
+        - fromFieldPath: spec.prerelationpatches
+          toFieldPath: spec.forProvider.values.prerelationpatches
         - fromFieldPath: spec.postpatches
           toFieldPath: spec.forProvider.values.postpatches
