@@ -8,10 +8,18 @@ mkdir -p target 2>/dev/null
 ./createCRDS.sh
 
 # update image versions automatically from a central place
-sed -i "s,beimage:.*,beimage: ${BEBASEIMAGE},g" grapi/composition.yaml
-sed -i "s,beimagetag:.*,beimagetag: ${BEBASEIMAGEVERSION},g" grapi/composition.yaml
-sed -i "s,uiimage:.*,uiimage: ${UIBASEIMAGE},g" gruim/composition.yaml
-sed -i "s,uiimagetag:.*,uiimagetag: ${UIBASEIMAGEVERSION},g" gruim/composition.yaml
+if [ "$(uname -s)" = "Darwin" ]; then 
+    SPACER=" '' "
+else
+    SPACER=""
+fi
+sed -i ${SPACER} "s,beimage:.*,beimage: ${BEBASEIMAGE},g" grapi/composition.yaml
+sed -i ${SPACER} "s,beimagetag:.*,beimagetag: ${BEBASEIMAGEVERSION},g" grapi/composition.yaml
+sed -i ${SPACER} "s,uiimage:.*,uiimage: ${UIBASEIMAGE},g" gruim/composition.yaml
+sed -i ${SPACER} "s,uiimagetag:.*,uiimagetag: ${UIBASEIMAGEVERSION},g" gruim/composition.yaml
+if [ "$(uname -s)" = "Darwin" ]; then 
+    rm grapi/composition.yaml\'\' 2>/dev/null
+fi
 
 # build the crossplane package
 echo "build the package"
