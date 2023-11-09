@@ -64,11 +64,11 @@ for z in ${clis[*]}; do
   #   echo "Patching: $name --- $type"
   #   yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties += {\"${name}\": { \"description\": \"${name}\", \"type\": \"${type}\" } }" grapi/definition.yaml
   # fi
-  for i in $(grep "this.option(" ${cli}.js | sed "s,this.option(',," | sed "s,'\, {.*,,g" | tr -d '\r'); do
+  for i in $(grep "this.option(" ${cli}.js | ${SED} "s,this.option(',," | ${SED} "s,'\, {.*,,g" | tr -d '\r'); do
     name=$i
     # echo grep "this.option(.*${name}" -A6 ${cli}.js 
-    type=$(grep "this.option(.*${name}" -A6 ${cli}.js | grep -m1 "type:" | sed "s,^.*type: ,,g" | sed "s|,.*||g" | sed "s|}.*||g" | tr '[:upper:]' '[:lower:]')
-    desc=$(grep "this.option(.*${name}" -A6 ${cli}.js | grep -m1 -A2 "description:" | sed "s,^.*description: g.f(,,g" | grep -o "'.*'" | head -n 1 | sed "s,',,g")
+    type=$(grep "this.option(.*${name}" -A6 ${cli}.js | grep -m1 "type:" | ${SED} "s,^.*type: ,,g" | ${SED} "s|,.*||g" | ${SED} "s|}.*||g" | tr '[:upper:]' '[:lower:]')
+    desc=$(grep "this.option(.*${name}" -A6 ${cli}.js | grep -m1 -A2 "description:" | ${SED} "s,^.*description: g.f(,,g" | grep -o "'.*'" | head -n 1 | ${SED} "s,',,g")
     echo "Patching: $name --- $type"
     yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties += {\"${name}\": { \"description\": \"${desc}\", \"type\": \"${type}\" } }" grapi/definition.yaml
   done
