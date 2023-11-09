@@ -12,7 +12,7 @@ echo "extend CRD for DataSources"
 docker run --rm -it ${BEBASEIMAGE}:${BEBASEIMAGEVERSION} cat /usr/local/lib/node_modules/\@loopback/cli/lib/connectors.json > connectors.json
 
 BASELOCATIONDS=".spec.versions[0].schema.openAPIV3Schema.properties.spec.properties.datasources.items"
-dstypes=("mysql" "postgresql") 
+dstypes=("mysql" "postgresql" "kv-redis" "kv-memory") 
 yq -i "del(${BASELOCATIONDS}.properties.spec.properties.*)" grapi/definition.yaml
 for z in ${dstypes[*]}; do 
 
@@ -28,7 +28,7 @@ for z in ${dstypes[*]}; do
   desc="please provide the connector type for the datasource"
   type="string"
   yq -i "${BASELOCATIONDS}.properties.spec.properties.${dstype}.properties += {\"${setting}\": { \"description\": \"${desc}\", \"type\": \"${type}\", \"default\": \"${dstype}\" } }" grapi/definition.yaml
-  cat connectors.json | jq -r ".${dstype}.settings | keys[]" | while read -r setting; do 
+  cat connectors.json | jq -r ".\"${dstype}\".settings | keys[]" | while read -r setting; do 
     # echo "do something with ${setting}"; 
     desc="spec for ${setting} for datasource ${dstype}"
     type="string"
@@ -86,5 +86,9 @@ for z in ${clis[*]}; do
   rm ${z}.js
   ((c++))
 done
+
+
+
+# extend CRD for CACHECONFIGS
 
 
