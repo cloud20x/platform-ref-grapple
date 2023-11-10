@@ -70,6 +70,7 @@ for z in ${clis[*]}; do
     type=$(grep "this.option(.*${name}" -A6 ${cli}.js | grep -m1 "type:" | ${SED} "s,^.*type: ,,g" | ${SED} "s|,.*||g" | ${SED} "s|}.*||g" | tr '[:upper:]' '[:lower:]')
     desc=$(grep "this.option(.*${name}" -A6 ${cli}.js | grep -m1 -A2 "description:" | ${SED} "s,^.*description: g.f(,,g" | grep -o "'.*'" | head -n 1 | ${SED} "s,',,g")
     echo "Patching: $name --- $type"
+    # echo yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties += {\"${name}\": { \"description\": \"${desc}\", \"type\": \"${type}\" } }" grapi/definition.yaml
     yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties += {\"${name}\": { \"description\": \"${desc}\", \"type\": \"${type}\" } }" grapi/definition.yaml
   done
   if [ "${crd}" = "discoveries" ]; then
@@ -90,5 +91,22 @@ done
 
 
 # extend CRD for CACHECONFIGS
-
+echo "----"
+echo "extend CRD for CACHECONFIGS"
+BASELOCATION=".spec.versions[0].schema.openAPIV3Schema.properties.spec.properties"
+name="redisDS"
+desc="Please specify here the name of the cache datasource (kv-redis datasource) to be used as cache storage"
+type="string"
+echo "Patching: $name --- $type"
+yq -i "${BASELOCATION}.cacheconfigs.items.properties.spec.properties += {\"${name}\": { \"description\": \"${desc}\", \"type\": \"${type}\" } }" grapi/definition.yaml
+name="cacheTTL"
+desc="Please specify here the cache TTL for the cache storage"
+type="string"
+echo "Patching: $name --- $type"
+yq -i "${BASELOCATION}.cacheconfigs.items.properties.spec.properties += {\"${name}\": { \"description\": \"${desc}\", \"type\": \"${type}\" } }" grapi/definition.yaml
+name="openApis"
+desc="Please specify here the name of the openapi specification that shall be cached"
+type="string"
+echo "Patching: $name --- $type"
+yq -i "${BASELOCATION}.cacheconfigs.items.properties.spec.properties += {\"${name}\": { \"description\": \"${desc}\", \"type\": \"${type}\" } }" grapi/definition.yaml
 
