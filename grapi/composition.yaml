@@ -64,7 +64,6 @@ spec:
               imagetag: ""
               # beimage: patrickriegler/loopback
               # beimagetag: v0.97
-              rediscache: false
               translations: false
               apiregistry: false
               graphql: false
@@ -77,6 +76,7 @@ spec:
               relations: []
               serviceproviders: []
               openapis: []
+              cacheconfigs: {}
               restcruds: []
               repositories: []
               controllers: []
@@ -191,8 +191,8 @@ spec:
           toFieldPath: spec.forProvider.values.beimage
         - fromFieldPath: spec.beimagetag
           toFieldPath: spec.forProvider.values.beimagetag
-        - fromFieldPath: spec.rediscache
-          toFieldPath: spec.forProvider.values.rediscache
+        - fromFieldPath: spec.cacheconfigs
+          toFieldPath: spec.forProvider.values.cacheconfigs
         - fromFieldPath: spec.translations
           toFieldPath: spec.forProvider.values.translations
         - fromFieldPath: spec.apiregistry

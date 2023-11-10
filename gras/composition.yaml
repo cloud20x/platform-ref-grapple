@@ -112,8 +112,8 @@ spec:
         #   toFieldPath: spec.forProvider.values.beimage
         - fromFieldPath: spec.claimRef.beimagetag
           toFieldPath: spec.forProvider.values.beimagetag
-        # - fromFieldPath: spec.rediscache
-        #   toFieldPath: spec.forProvider.values.rediscache
+        - fromFieldPath: spec.cacheconfigs
+          toFieldPath: spec.forProvider.values.cacheconfigs
         # - fromFieldPath: spec.translations
         #   toFieldPath: spec.forProvider.values.translations
         # - fromFieldPath: spec.apiregistry
