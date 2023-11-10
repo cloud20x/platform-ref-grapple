@@ -138,9 +138,6 @@ spec:
                 # uimodules:
                 #   description: 'Please specify whether to deploy ui modules or only the be (api)'
                 #   type: boolean
-                rediscache:
-                  description: 'Please specify whether to the redis cache shall be enabled'
-                  type: boolean
                 translations:
                   description: 'Please specify whether translations shall be enabled'
                   type: boolean
@@ -243,6 +240,43 @@ spec:
                               user:
                                 description: spec for user for datasource postgresql
                                 type: string
+                          kv-redis:
+                            description: specs for datasource type kv-redis
+                            type: object
+                            properties:
+                              name:
+                                description: please provide a name for the datasource
+                                type: string
+                              connector:
+                                description: please provide the connector type for the datasource
+                                type: string
+                                default: kv-redis
+                              db:
+                                description: spec for db for datasource kv-redis
+                                type: string
+                              host:
+                                description: spec for host for datasource kv-redis
+                                type: string
+                              password:
+                                description: spec for password for datasource kv-redis
+                                type: string
+                              port:
+                                description: spec for port for datasource kv-redis
+                                type: string
+                              url:
+                                description: spec for url for datasource kv-redis
+                                type: string
+                          kv-memory:
+                            description: specs for datasource type kv-memory
+                            type: object
+                            properties:
+                              name:
+                                description: please provide a name for the datasource
+                                type: string
+                              connector:
+                                description: please provide the connector type for the datasource
+                                type: string
+                                default: kv-memory
                 discoveries:
                   description: 'Please add here the link to all the discoveries that shall be deployed within this grapi'
                   type: array
@@ -431,6 +465,30 @@ spec:
                             type: boolean
                           prefix:
                             description: Provide prefix to avoid duplication
+                            type: string
+                cacheconfigs:
+                  description: 'Please specify the configuration of a cache'
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        description: please specify the name for the object
+                        type: string
+                      content:
+                        description: please specify the content for the object
+                        type: string
+                      spec:
+                        type: object
+                        properties:
+                          redisDS:
+                            description: Please specify here the name of the cache datasource (kv-redis datasource) to be used as cache storage
+                            type: string
+                          cacheTTL:
+                            description: Please specify here the cache TTL for the cache storage
+                            type: string
+                          openApis:
+                            description: Please specify here the name of the openapi specification that shall be cached
                             type: string
                 restcruds:
                   description: 'Please add here the link to all the restcruds that shall be deployed within this grapi'

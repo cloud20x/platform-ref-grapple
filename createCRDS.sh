@@ -64,12 +64,17 @@ for z in ${clis[*]}; do
   #   echo "Patching: $name --- $type"
   #   yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties += {\"${name}\": { \"description\": \"${name}\", \"type\": \"${type}\" } }" grapi/definition.yaml
   # fi
-  for i in $(grep "this.option(" ${cli}.js | ${SED} "s,this.option(',," | ${SED} "s,'\, {.*,,g" | tr -d '\r'); do
+  for i in $(${GREP} "this.option(" ${cli}.js | ${SED} "s,this.option(',," | ${SED} "s,'\, {.*,,g" | tr -d '\r'); do
     name=$i
-    # echo grep "this.option(.*${name}" -A6 ${cli}.js 
-    type=$(grep "this.option(.*${name}" -A6 ${cli}.js | grep -m1 "type:" | ${SED} "s,^.*type: ,,g" | ${SED} "s|,.*||g" | ${SED} "s|}.*||g" | tr '[:upper:]' '[:lower:]')
-    desc=$(grep "this.option(.*${name}" -A6 ${cli}.js | grep -m1 -A2 "description:" | ${SED} "s,^.*description: g.f(,,g" | grep -o "'.*'" | head -n 1 | ${SED} "s,',,g")
+    # echo ${GREP} "this.option(.*${name}" -A6 ${cli}.js 
+    type=$(${GREP} "this.option(.*${name}" -A6 ${cli}.js | ${GREP} -m1 "type:" | ${SED} "s,^.*type: ,,g" | ${SED} "s|,.*||g" | ${SED} "s|}.*||g" | tr '[:upper:]' '[:lower:]')
+    desc=$(${GREP} "this.option(.*${name}" -A6 ${cli}.js | ${GREP} -m1 -A2 "description:" | ${SED} "s,^.*description: g.f(,,g" | ${GREP} -o "'.*'" | head -n 1 | ${SED} "s,',,g")
     echo "Patching: $name --- $type"
+    if [ "${crd}" = "discoveries" ] && [ "${name}" = "outdir" ]; then
+      echo ${GREP} "this.option(.*${name}" -A6 ${cli}.js | ${GREP} -m1 -A2 "description:" 
+      echo $(${GREP} "this.option(.*${name}" -A6 ${cli}.js | ${GREP} -m1 -A2 "description:")
+      echo $desc
+    fi
     # echo yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties += {\"${name}\": { \"description\": \"${desc}\", \"type\": \"${type}\" } }" grapi/definition.yaml
     yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties += {\"${name}\": { \"description\": \"${desc}\", \"type\": \"${type}\" } }" grapi/definition.yaml
   done

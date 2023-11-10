@@ -14,6 +14,8 @@ UIBASEIMAGEVERSION="0.1.15"
 
 if [ "$(uname -s)" = "Darwin" ]; then 
     SED=gsed
+    GREP=ggrep
 else
     SED=sed
+    GREP=grep
 fi
