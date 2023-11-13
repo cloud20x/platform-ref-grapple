@@ -98,20 +98,54 @@ done
 # extend CRD for CACHECONFIGS
 echo "----"
 echo "extend CRD for CACHECONFIGS"
+crd=cacheconfigs
 BASELOCATION=".spec.versions[0].schema.openAPIV3Schema.properties.spec.properties"
+yq -i "del(${BASELOCATION}.${crd}.items.properties.spec.properties.*)" grapi/definition.yaml
 name="redisDS"
 desc="Please specify here the name of the cache datasource (kv-redis datasource) to be used as cache storage"
 type="string"
 echo "Patching: $name --- $type"
-yq -i "${BASELOCATION}.cacheconfigs.items.properties.spec.properties += {\"${name}\": { \"description\": \"${desc}\", \"type\": \"${type}\" } }" grapi/definition.yaml
+yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties += {\"${name}\": { \"description\": \"${desc}\", \"type\": \"${type}\" } }" grapi/definition.yaml
 name="cacheTTL"
 desc="Please specify here the cache TTL for the cache storage"
-type="string"
+type="integer"
 echo "Patching: $name --- $type"
-yq -i "${BASELOCATION}.cacheconfigs.items.properties.spec.properties += {\"${name}\": { \"description\": \"${desc}\", \"type\": \"${type}\" } }" grapi/definition.yaml
+yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties += {\"${name}\": { \"description\": \"${desc}\", \"type\": \"${type}\" } }" grapi/definition.yaml
 name="openApis"
 desc="Please specify here the name of the openapi specification that shall be cached"
 type="string"
 echo "Patching: $name --- $type"
-yq -i "${BASELOCATION}.cacheconfigs.items.properties.spec.properties += {\"${name}\": { \"description\": \"${desc}\", \"type\": \"${type}\" } }" grapi/definition.yaml
+yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties += {\"${name}\": { \"description\": \"${desc}\", \"type\": \"${type}\" } }" grapi/definition.yaml
+
+
+# extend CRD for Fuzzy Search
+echo "----"
+echo "extend CRD for CACHECONFIGS"
+crd=fuzzysearch
+BASELOCATION=".spec.versions[0].schema.openAPIV3Schema.properties.spec.properties"
+yq -i "del(${BASELOCATION}.${crd}.items.properties.spec.properties.*)" grapi/definition.yaml
+name="fuzzy"
+desc="Please specify here if a fuzzy search should be made available for each endpoint"
+type="boolean"
+default="true"
+echo "Patching: $name --- $type"
+yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties += {\"${name}\": { \"description\": \"${desc}\", \"type\": \"${type}\" , \"default\": ${default} } }" grapi/definition.yaml
+name="centralFuzzy"
+desc="Please specify here if a central fuzzy endpoint over all endpoints shall be made available"
+type="boolean"
+default="false"
+echo "Patching: $name --- $type"
+yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties += {\"${name}\": { \"description\": \"${desc}\", \"type\": \"${type}\" , \"default\": ${default} } }" grapi/definition.yaml
+name="datasource"
+desc="Please specify here the name of the datasource for which the fuzzy search endpoint shall be generated"
+type="string"
+echo "Patching: $name --- $type"
+yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties += {\"${name}\": { \"description\": \"${desc}\", \"type\": \"${type}\" } }" grapi/definition.yaml
+name="appName"
+desc="Please specify here the application name for the fuzzy endpoint"
+type="string"
+echo "Patching: $name --- $type"
+yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties += {\"${name}\": { \"description\": \"${desc}\", \"type\": \"${type}\" } }" grapi/definition.yaml
+
+# {"fuzzy": true, "centralFuzzy": true, "datasource": "jcscherrer", "appName": "Grpl"}
 

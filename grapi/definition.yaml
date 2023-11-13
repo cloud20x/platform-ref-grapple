@@ -486,7 +486,7 @@ spec:
                             type: string
                           cacheTTL:
                             description: Please specify here the cache TTL for the cache storage
-                            type: string
+                            type: integer
                           openApis:
                             description: Please specify here the name of the openapi specification that shall be cached
                             type: string
@@ -561,6 +561,35 @@ spec:
                         properties:
                           controllerType:
                             description: Type for the %s
+                            type: string
+                fuzzysearch:
+                  description: 'Please specify the configuration of a cache'
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        description: please specify the name for the object
+                        type: string
+                      content:
+                        description: please specify the content for the object
+                        type: string
+                      spec:
+                        type: object
+                        properties:
+                          fuzzy:
+                            description: Please specify here if a fuzzy search should be made available for each endpoint
+                            type: boolean
+                            default: true
+                          centralFuzzy:
+                            description: Please specify here if a central fuzzy endpoint over all endpoints shall be made available
+                            type: boolean
+                            default: false
+                          datasource:
+                            description: Please specify here the name of the datasource for which the fuzzy search endpoint shall be generated
+                            type: string
+                          appName:
+                            description: Please specify here the application name for the fuzzy endpoint
                             type: string
                 prepatches:
                   description: 'Please add here a patch script (base64 encoded) that shall run before datasource creation'
