@@ -106,7 +106,7 @@ spec:
                   description: 'Please specify here the custom header content protecting the grapi'
                   type: string
                 corsurls:
-                  description: 'Please specify here the allowed cors urls for protecting the grapi'
+                  description: 'Please specify here the allowed cors urls for protecting the grapi (e.g. "http://localhost:3000,http://localhost:2000")'
                   type: string
                 auth:
                   description: 'Please specify here if authentication shall be enabled for the deployment (default: false)'
