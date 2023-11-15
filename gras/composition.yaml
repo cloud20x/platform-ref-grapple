@@ -80,6 +80,8 @@ spec:
           toFieldPath: spec.forProvider.values.asname
         - fromFieldPath: spec.grasversion
           toFieldPath: spec.forProvider.values.grasversion
+        - fromFieldPath: spec.customheader
+          toFieldPath: spec.forProvider.values.customheader
         - fromFieldPath: spec.grapis
           toFieldPath: spec.forProvider.values.grapis
         - fromFieldPath: spec.gruims
@@ -110,10 +112,17 @@ spec:
         #   toFieldPath: spec.forProvider.values.imagetag
         # - fromFieldPath: spec.beimage
         #   toFieldPath: spec.forProvider.values.beimage
-        - fromFieldPath: spec.claimRef.beimagetag
-          toFieldPath: spec.forProvider.values.beimagetag
-        - fromFieldPath: spec.cacheconfigs
-          toFieldPath: spec.forProvider.values.cacheconfigs
+
+
+        # does it work, if this is disabled?
+        # - fromFieldPath: spec.claimRef.beimagetag
+        #   toFieldPath: spec.forProvider.values.beimagetag
+        # - fromFieldPath: spec.cacheconfigs
+        #   toFieldPath: spec.forProvider.values.cacheconfigs
+        # - fromFieldPath: spec.fuzzysearch
+        #   toFieldPath: spec.forProvider.values.fuzzysearch
+
+
         # - fromFieldPath: spec.translations
         #   toFieldPath: spec.forProvider.values.translations
         # - fromFieldPath: spec.apiregistry

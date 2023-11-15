@@ -111,6 +111,9 @@ spec:
                 sslissuer:
                   description: 'Please specify here the ssl issuer'
                   type: string
+                customheader:
+                  description: 'Please specify here the custom header content protecting the gruim'
+                  type: string
                 buildimages:
                   description: 'Shall images be built (pre-baked) for this deployment?'
                   type: boolean

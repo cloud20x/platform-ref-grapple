@@ -102,6 +102,12 @@ spec:
                 disableexplorer:
                   description: 'Please specify "true" if you want to disable the explorer (default: false)'
                   type: boolean
+                customheader:
+                  description: 'Please specify here the custom header content protecting the grapi'
+                  type: string
+                corsurls:
+                  description: 'Please specify here the allowed cors urls for protecting the grapi'
+                  type: string
                 auth:
                   description: 'Please specify here if authentication shall be enabled for the deployment (default: false)'
                   type: boolean

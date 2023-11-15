@@ -52,6 +52,9 @@ spec:
                 grasversion:
                   description: 'Please specify here the version of the grapple ApplicationSet'
                   type: string
+                customheader:
+                  description: 'Please specify here the custom header content protecting the grapple ApplicationSet'
+                  type: string
                 grapis:
                   description: 'Please add here the grapis for this gras ApplicationSet'
                   type: array

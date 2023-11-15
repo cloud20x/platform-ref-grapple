@@ -137,8 +137,8 @@ spec:
           toFieldPath: spec.forProvider.values.ssl
         - fromFieldPath: spec.sslissuer
           toFieldPath: spec.forProvider.values.sslissuer
-        - fromFieldPath: spec.sslissuer
-          toFieldPath: spec.forProvider.values.sslissuer
+        - fromFieldPath: spec.customheader
+          toFieldPath: spec.forProvider.values.customheader
         - fromFieldPath: spec.buildimages
           toFieldPath: spec.forProvider.values.buildimages
         - fromFieldPath: spec.buildimagecache

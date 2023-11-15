@@ -115,25 +115,6 @@ spec:
                     name: grsf-config
                     namespace: grpl-system
                     key: beimagetag
-            # set: 
-            #   - name: externalDatabase.host
-            #     valueFrom: 
-            #       secretKeyRef: 
-            #         name: 
-            #         namespace: grpl-system
-            #         key: endpoint
-            #   - name: externalDatabase.user
-            #     valueFrom: 
-            #       secretKeyRef: 
-            #         name: 
-            #         namespace: grpl-system
-            #         key: username
-            #   - name: externalDatabase.password
-            #     valueFrom: 
-            #       secretKeyRef: 
-            #         name: 
-            #         namespace: grpl-system
-            #         key: password
           writeConnectionSecretsToRef: 
             namespace: grpl-test
             name: myrelease-secret
@@ -173,8 +154,10 @@ spec:
           toFieldPath: spec.forProvider.values.ssl
         - fromFieldPath: spec.sslissuer
           toFieldPath: spec.forProvider.values.sslissuer
-        - fromFieldPath: spec.sslissuer
-          toFieldPath: spec.forProvider.values.sslissuer
+        - fromFieldPath: spec.customheader
+          toFieldPath: spec.forProvider.values.customheader
+        - fromFieldPath: spec.corsurls
+          toFieldPath: spec.forProvider.values.corsurls
         - fromFieldPath: spec.disableexplorer
           toFieldPath: spec.forProvider.values.disableexplorer
         - fromFieldPath: spec.buildimages
@@ -193,6 +176,8 @@ spec:
           toFieldPath: spec.forProvider.values.beimagetag
         - fromFieldPath: spec.cacheconfigs
           toFieldPath: spec.forProvider.values.cacheconfigs
+        - fromFieldPath: spec.fuzzysearch
+          toFieldPath: spec.forProvider.values.fuzzysearch
         - fromFieldPath: spec.translations
           toFieldPath: spec.forProvider.values.translations
         - fromFieldPath: spec.apiregistry
