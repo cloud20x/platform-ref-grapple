@@ -42,8 +42,10 @@ spec:
               uimodules: true
               monitoring: false
               mapi: ""
-              openapi: "https://ht-classicmodels-classicmodelsas-as.uat.grapple.solutions/openapi.json"
-              endpoint: "https://ht-classicmodels-classicmodelsas-as.uat.grapple.solutions"
+              # openapi: "https://ht-classicmodels-classicmodelsas-as.uat.grapple.solutions/openapi.json"
+              # endpoint: "https://ht-classicmodels-classicmodelsas-as.uat.grapple.solutions"
+              openapi: ""
+              endpoint: ""
               style: ""
               config: ""
               additionalpackages: ""

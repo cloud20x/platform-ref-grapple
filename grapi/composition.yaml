@@ -63,7 +63,7 @@ spec:
               deployimages: false
               imagetag: ""
               # beimage: patrickriegler/loopback
-              # beimagetag: v0.97
+              # beimagetag: v0.103
               translations: false
               apiregistry: false
               graphql: false
@@ -115,6 +115,18 @@ spec:
                     name: grsf-config
                     namespace: grpl-system
                     key: beimagetag
+              - name: ssl_config
+                valueFrom:
+                  secretKeyRef: 
+                    name: grsf-config
+                    namespace: grpl-system
+                    key: ssl
+              - name: sslissuer_config
+                valueFrom:
+                  secretKeyRef: 
+                    name: grsf-config
+                    namespace: grpl-system
+                    key: sslissuer
           writeConnectionSecretsToRef: 
             namespace: grpl-test
             name: myrelease-secret
