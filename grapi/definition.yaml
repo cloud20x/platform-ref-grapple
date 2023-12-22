@@ -369,9 +369,12 @@ spec:
                           schema:
                             description: If discovering a model from a dataSource, specify the schema which contains it
                             type: string
+                          name:
+                            description: name
+                            type: string
                           properties:
                             description: properties
-                            type: object
+                            type: array
                             properties:
                               propName:
                                 description: propName

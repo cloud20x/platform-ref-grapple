@@ -90,8 +90,13 @@ for z in ${clis[*]}; do
     # yq -i "with(${BASELOCATION}.${crd}.items.properties.spec.properties.yes ; . | key style=\"single\" ) " grapi/definition.yaml
   fi
   if [ "${crd}" = "models" ]; then
+    name=name
+    type=string
+    echo "Patching: $name --- $type"
+    yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties += {\"${name}\": { \"description\": \"${name}\", \"type\": \"${type}\" } }" grapi/definition.yaml
+
     name=properties
-    type=object
+    type=array
     echo "Patching: $name --- $type"
     yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties += {\"${name}\": { \"description\": \"${name}\", \"type\": \"${type}\" } }" grapi/definition.yaml
 
