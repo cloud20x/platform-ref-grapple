@@ -283,6 +283,23 @@ spec:
                                 description: please provide the connector type for the datasource
                                 type: string
                                 default: kv-memory
+                          memory:
+                            description: specs for datasource type memory
+                            type: object
+                            properties:
+                              name:
+                                description: please provide a name for the datasource
+                                type: string
+                              connector:
+                                description: please provide the connector type for the datasource
+                                type: string
+                                default: memory
+                              file:
+                                description: spec for file for datasource memory
+                                type: string
+                              localStorage:
+                                description: spec for localStorage for datasource memory
+                                type: string
                 discoveries:
                   description: 'Please add here the link to all the discoveries that shall be deployed within this grapi'
                   type: array
@@ -352,6 +369,31 @@ spec:
                           schema:
                             description: If discovering a model from a dataSource, specify the schema which contains it
                             type: string
+                          properties:
+                            description: properties
+                            type: object
+                            properties:
+                              propName:
+                                description: propName
+                                type: string
+                              type:
+                                description: type
+                                type: string
+                              itemType:
+                                description: itemType
+                                type: string
+                              id:
+                                description: id
+                                type: boolean
+                              generated:
+                                description: generated
+                                type: boolean
+                              required:
+                                description: required
+                                type: boolean
+                              default:
+                                description: default
+                                type: string
                 relations:
                   description: 'Please add here the link to all the relations that shall be deployed within this grapi'
                   type: array

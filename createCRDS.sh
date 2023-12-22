@@ -12,7 +12,7 @@ echo "extend CRD for DataSources"
 docker run --rm -it ${BEBASEIMAGE}:${BEBASEIMAGEVERSION} cat /usr/local/lib/node_modules/\@loopback/cli/lib/connectors.json > connectors.json
 
 BASELOCATIONDS=".spec.versions[0].schema.openAPIV3Schema.properties.spec.properties.datasources.items"
-dstypes=("mysql" "postgresql" "kv-redis" "kv-memory") 
+dstypes=("mysql" "postgresql" "kv-redis" "kv-memory" "memory")
 yq -i "del(${BASELOCATIONDS}.properties.spec.properties.*)" grapi/definition.yaml
 for z in ${dstypes[*]}; do 
 
@@ -88,6 +88,35 @@ for z in ${clis[*]}; do
     # echo "Patching: $name --- $type"
     # yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties += {\"${name}\": { \"description\": \"${name}\", \"type\": \"${type}\" } }" grapi/definition.yaml
     # yq -i "with(${BASELOCATION}.${crd}.items.properties.spec.properties.yes ; . | key style=\"single\" ) " grapi/definition.yaml
+  fi
+  if [ "${crd}" = "models" ]; then
+    name=properties
+    type=object
+    echo "Patching: $name --- $type"
+    yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties += {\"${name}\": { \"description\": \"${name}\", \"type\": \"${type}\" } }" grapi/definition.yaml
+
+    ${GREP} "  name:" ${cli}.js | while read -r line ; do
+      if [[ "$line" != *"name: \`Entity"* ]] && [[ "$line" != *"name: 'modelBaseClass"* ]] && [[ "$line" != *"name: 'allowAdditionalProperties"* ]]; then
+        n=$(echo $line | sed 's,name:,,g' | sed -e 's/[^[:alnum:]|-]//g')
+        # echo "Processing $line"
+        # echo "name: $n"
+        # grep $line ${cli}.js -A5 | grep "type: "
+        if [ "$n" = "propName" ]; then
+          t=string
+        elif [ "$n" = "default" ]; then
+          t=string
+        else
+          # echo "----"
+          # echo $line
+          t=$(${GREP} "$line" ${cli}.js -A5 | grep "type: " | sed 's,type:,,g' | sed -e 's/[^[:alnum:]|-]//g')
+          if [ "$t" = "list" ]; then t=string; fi
+          if [ "$t" = "confirm" ]; then t=boolean; fi
+        fi
+        echo "Patching: $n --- $t"
+        yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties.properties.properties += {\"${n}\": { \"description\": \"${n}\", \"type\": \"${t}\" } }" grapi/definition.yaml
+      fi
+    done
+
   fi
   rm ${z}.js
   ((c++))
