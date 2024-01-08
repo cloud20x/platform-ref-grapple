@@ -374,29 +374,28 @@ spec:
                             type: string
                           properties:
                             description: properties
-                            type: array
-                            properties:
-                              propName:
-                                description: propName
-                                type: string
-                              type:
-                                description: type
-                                type: string
-                              itemType:
-                                description: itemType
-                                type: string
-                              id:
-                                description: id
-                                type: boolean
-                              generated:
-                                description: generated
-                                type: boolean
-                              required:
-                                description: required
-                                type: boolean
-                              default:
-                                description: default
-                                type: string
+                            type: object
+                            additionalProperties:
+                              type: object
+                              properties:
+                                type:
+                                  description: type
+                                  type: string
+                                itemType:
+                                  description: itemType
+                                  type: string
+                                id:
+                                  description: id
+                                  type: boolean
+                                generated:
+                                  description: generated
+                                  type: boolean
+                                required:
+                                  description: required
+                                  type: boolean
+                                default:
+                                  description: default
+                                  type: string
                 relations:
                   description: 'Please add here the link to all the relations that shall be deployed within this grapi'
                   type: array

@@ -96,9 +96,10 @@ for z in ${clis[*]}; do
     yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties += {\"${name}\": { \"description\": \"${name}\", \"type\": \"${type}\" } }" grapi/definition.yaml
 
     name=properties
-    type=array
+    type=object
     echo "Patching: $name --- $type"
     yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties += {\"${name}\": { \"description\": \"${name}\", \"type\": \"${type}\" } }" grapi/definition.yaml
+    yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties.properties.additionalProperties += {\"type\": \"object\" }" grapi/definition.yaml
 
     ${GREP} "  name:" ${cli}.js | while read -r line ; do
       if [[ "$line" != *"name: \`Entity"* ]] && [[ "$line" != *"name: 'modelBaseClass"* ]] && [[ "$line" != *"name: 'allowAdditionalProperties"* ]]; then
@@ -117,8 +118,11 @@ for z in ${clis[*]}; do
           if [ "$t" = "list" ]; then t=string; fi
           if [ "$t" = "confirm" ]; then t=boolean; fi
         fi
-        echo "Patching: $n --- $t"
-        yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties.properties.properties += {\"${n}\": { \"description\": \"${n}\", \"type\": \"${t}\" } }" grapi/definition.yaml
+        # run the patching for all, but the propName - if injected in the the lb4 command, it won't work...
+        if [ "$n" != "propName" ]; then
+          echo "Patching: $n --- $t"
+          yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties.properties.additionalProperties.properties += {\"${n}\": { \"description\": \"${n}\", \"type\": \"${t}\" } }" grapi/definition.yaml
+        fi
       fi
     done
 
