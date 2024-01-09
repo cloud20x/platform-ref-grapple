@@ -544,6 +544,15 @@ spec:
                           prefix:
                             description: Provide prefix to avoid duplication
                             type: string
+                          readonly:
+                            description: Generate only GET endpoints.
+                            type: boolean
+                          exclude:
+                            description: Exclude endpoints with provided regex.
+                            type: string
+                          include:
+                            description: Only include endpoints with provided regex.
+                            type: string
                 cacheconfigs:
                   description: 'Please specify the configuration of a cache'
                   type: array

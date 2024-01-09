@@ -65,7 +65,7 @@ spec:
               deployimages: false
               imagetag: ""
               # beimage: patrickriegler/loopback
-              # beimagetag: v0.103
+              # beimagetag: v0.112
               translations: false
               apiregistry: false
               graphql: false
