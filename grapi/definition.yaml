@@ -187,6 +187,34 @@ spec:
                         type: object
                         # allows to specify anything in the object... no verification whatsoever...
                         x-kubernetes-preserve-unknown-fields: true
+                volumes:
+                  description: "specify volumes that shall run successfully before starting the grapi"
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        description: please specify the name for the volumes
+                        type: string
+                      spec:
+                        description: please specify the spec for the grapi volumes - verify against "kubectl explain pod.spec.volumes"
+                        type: object
+                        # allows to specify anything in the object... no verification whatsoever...
+                        x-kubernetes-preserve-unknown-fields: true
+                volumeMounts:
+                  description: "specify volumeMounts that shall run successfully before starting the grapi"
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        description: please specify the name for the volumeMounts
+                        type: string
+                      spec:
+                        description: please specify the spec for the grapi volumeMounts - verify against "kubectl explain pod.spec.containers.volumeMounts"
+                        type: object
+                        # allows to specify anything in the object... no verification whatsoever...
+                        x-kubernetes-preserve-unknown-fields: true
                 datasources:
                   description: 'Please add here the link to all the datasources that shall be deployed within this grapi'
                   type: array

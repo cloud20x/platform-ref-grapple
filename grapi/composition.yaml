@@ -73,6 +73,8 @@ spec:
               discoveredrepos: true
               externalsecrets: []
               initContainers: []
+              volumes: []
+              volumeMounts: []
               datasources: []
               discoveries: []
               models: []
@@ -211,6 +213,10 @@ spec:
           toFieldPath: spec.forProvider.values.externalsecrets
         - fromFieldPath: spec.initContainers
           toFieldPath: spec.forProvider.values.initContainers
+        - fromFieldPath: spec.volumes
+          toFieldPath: spec.forProvider.values.volumes
+        - fromFieldPath: spec.volumeMounts
+          toFieldPath: spec.forProvider.values.volumeMounts
 
         - fromFieldPath: spec.datasources
           toFieldPath: spec.forProvider.values.datasources
