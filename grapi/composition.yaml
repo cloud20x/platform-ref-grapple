@@ -72,6 +72,7 @@ spec:
               monitoring: false
               discoveredrepos: true
               externalsecrets: []
+              initContainers: []
               datasources: []
               discoveries: []
               models: []
@@ -208,6 +209,8 @@ spec:
           toFieldPath: spec.forProvider.values.discoveredrepos
         - fromFieldPath: spec.externalsecrets
           toFieldPath: spec.forProvider.values.externalsecrets
+        - fromFieldPath: spec.initContainers
+          toFieldPath: spec.forProvider.values.initContainers
 
         - fromFieldPath: spec.datasources
           toFieldPath: spec.forProvider.values.datasources
