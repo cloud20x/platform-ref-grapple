@@ -126,6 +126,13 @@ for z in ${clis[*]}; do
       fi
     done
 
+    # at the end of models structure generation, add:
+    name=length
+    type=string
+    echo "Patching: $name --- $type"
+    yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties.properties.additionalProperties.properties += {\"${name}\": { \"description\": \"${name}\", \"type\": \"${type}\" } }" grapi/definition.yaml
+
+
   fi
   rm ${z}.js
   ((c++))

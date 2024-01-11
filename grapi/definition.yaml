@@ -424,6 +424,9 @@ spec:
                                 default:
                                   description: default
                                   type: string
+                                length:
+                                  description: length
+                                  type: string
                 relations:
                   description: 'Please add here the link to all the relations that shall be deployed within this grapi'
                   type: array
