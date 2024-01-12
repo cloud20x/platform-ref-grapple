@@ -7,10 +7,10 @@ TESTNS=grpl-test
 PROVIDERKUBERNETES=false
 PROVIDERHELM=true
 
-BEBASEIMAGE="patrickriegler/loopback"
+BEBASEIMAGE="grpl/loopback"
 BEBASEIMAGEVERSION="v0.112"
-UIBASEIMAGE="patrickriegler/cloud20x-ui-modules"
-UIBASEIMAGEVERSION="0.1.37"
+UIBASEIMAGE="grpl/cloud20x-ui-modules"
+UIBASEIMAGEVERSION="0.1.38"
 
 if [ "$(uname -s)" = "Darwin" ]; then 
     SED=gsed

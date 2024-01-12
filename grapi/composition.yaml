@@ -64,7 +64,7 @@ spec:
               runimages: true
               deployimages: false
               imagetag: ""
-              # beimage: patrickriegler/loopback
+              # beimage: grpl/loopback
               # beimagetag: v0.112
               translations: false
               apiregistry: false

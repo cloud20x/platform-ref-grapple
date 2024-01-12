@@ -37,8 +37,8 @@ spec:
               runimages: true
               deployimages: false
               imagetag: ""
-              # uiimage: patrickriegler/cloud20x-ui-modules
-              # uiimagetag: 0.1.37
+              # uiimage: grpl/cloud20x-ui-modules
+              # uiimagetag: 0.1.38
               uimodules: true
               monitoring: false
               mapi: ""
