@@ -173,6 +173,9 @@ spec:
                         type: object
                         # allows to specify anything in the object... no verification whatsoever...
                         x-kubernetes-preserve-unknown-fields: true
+                automigrate:
+                  description: 'Please specify whether to automatically migrate the datasource'
+                  type: boolean
                 extraSecrets:
                   description: 'Please add here the extraSecrets for this grapi'
                   type: array

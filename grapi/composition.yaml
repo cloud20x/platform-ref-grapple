@@ -59,6 +59,7 @@ spec:
               auth: false
               auth_write_only: false
               disableexplorer: false
+              automigrate: false
               buildimages: false
               buildimagecache: true
               runimages: true
@@ -176,6 +177,8 @@ spec:
           toFieldPath: spec.forProvider.values.auth
         - fromFieldPath: spec.auth_write_only
           toFieldPath: spec.forProvider.values.auth_write_only
+        - fromFieldPath: spec.automigrate
+          toFieldPath: spec.forProvider.values.automigrate
         - fromFieldPath: spec.customheader
           toFieldPath: spec.forProvider.values.customheader
         - fromFieldPath: spec.corsurls
