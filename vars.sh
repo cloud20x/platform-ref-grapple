@@ -10,7 +10,7 @@ PROVIDERHELM=true
 BEBASEIMAGE="grpl/loopback"
 BEBASEIMAGEVERSION="v0.121"
 UIBASEIMAGE="grpl/cloud20x-ui-modules"
-UIBASEIMAGEVERSION="0.1.40"
+UIBASEIMAGEVERSION="0.1.41"
 
 if [ "$(uname -s)" = "Darwin" ]; then 
     SED=gsed
