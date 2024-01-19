@@ -173,6 +173,11 @@ spec:
                         type: object
                         # allows to specify anything in the object... no verification whatsoever...
                         x-kubernetes-preserve-unknown-fields: true
+                extraSecrets:
+                  description: 'Please add here the extraSecrets for this grapi'
+                  type: array
+                  items:
+                    type: string
                 initContainers:
                   description: "specify initContainers that shall run successfully before starting the grapi"
                   type: array
