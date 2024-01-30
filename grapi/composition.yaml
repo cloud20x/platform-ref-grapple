@@ -179,6 +179,8 @@ spec:
           toFieldPath: spec.forProvider.values.auth_write_only
         - fromFieldPath: spec.automigrate
           toFieldPath: spec.forProvider.values.automigrate
+        - fromFieldPath: spec.autorestartgruim
+          toFieldPath: spec.forProvider.values.autorestartgruim
         - fromFieldPath: spec.customheader
           toFieldPath: spec.forProvider.values.customheader
         - fromFieldPath: spec.corsurls

@@ -176,6 +176,10 @@ spec:
                 automigrate:
                   description: 'Please specify whether to automatically migrate the datasource'
                   type: boolean
+                autorestartgruim:
+                  description: 'auto-restart the gruim on a change in the grapi spec'
+                  type: boolean
+                  default: false
                 extraSecrets:
                   description: 'Please add here the extraSecrets for this grapi'
                   type: array
