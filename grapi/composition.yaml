@@ -53,7 +53,7 @@ spec:
               asname: ""
               grapiversion: "0.0.1"
               clusterdomain: ""
-              ingress: false
+              ingress: true
               ssl: false
               sslissuer: letsencrypt-prod-cloud20x
               auth: false
