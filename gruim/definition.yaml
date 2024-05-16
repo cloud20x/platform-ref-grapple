@@ -102,6 +102,9 @@ spec:
                 clusterdomain:
                   description: 'Please specify here the clusterdomain of the target cluster'
                   type: string
+                dev:
+                  description: 'Please specify here if the DEV mode shall be activated'
+                  type: boolean
                 ingress:
                   description: 'Please specify here if ingress shall be enabled for the deployment'
                   type: boolean

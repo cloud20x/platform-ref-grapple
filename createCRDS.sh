@@ -161,6 +161,16 @@ desc="Please specify here the name of the openapi specification that shall be ca
 type="string"
 echo "Patching: $name --- $type"
 yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties += {\"${name}\": { \"description\": \"${desc}\", \"type\": \"${type}\" } }" grapi/definition.yaml
+name="exclude"
+desc="Please specify here, which endpoints shall be excluded from the cache"
+type="string"
+echo "Patching: $name --- $type"
+yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties += {\"${name}\": { \"description\": \"${desc}\", \"type\": \"${type}\" } }" grapi/definition.yaml
+name="include"
+desc="Please specify here, which endpoints shall be included in the cache"
+type="string"
+echo "Patching: $name --- $type"
+yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties += {\"${name}\": { \"description\": \"${desc}\", \"type\": \"${type}\" } }" grapi/definition.yaml
 
 
 # extend CRD for Fuzzy Search
@@ -191,6 +201,16 @@ desc="Please specify here the application name for the fuzzy endpoint"
 type="string"
 echo "Patching: $name --- $type"
 yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties += {\"${name}\": { \"description\": \"${desc}\", \"type\": \"${type}\" } }" grapi/definition.yaml
+name="include"
+desc="Please specify here includes for the fuzzy endpoint"
+type="string"
+echo "Patching: $name --- $type"
+yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties += {\"${name}\": { \"description\": \"${desc}\", \"type\": \"${type}\" } }" grapi/definition.yaml
+name="exclude"
+desc="Please specify here excludes for the fuzzy endpoint"
+type="string"
+echo "Patching: $name --- $type"
+yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties += {\"${name}\": { \"description\": \"${desc}\", \"type\": \"${type}\" } }" grapi/definition.yaml
 
-# {"fuzzy": true, "centralFuzzy": true, "datasource": "jcscherrer", "appName": "Grpl"}
+# {"fuzzy": true, "centralFuzzy": false, "datasource": "jcscherrer", "appName": "Grpl", "include": "kundes"}
 

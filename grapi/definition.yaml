@@ -90,6 +90,9 @@ spec:
                 clusterdomain:
                   description: 'Please specify here the clusterdomain of the target cluster'
                   type: string
+                dev:
+                  description: 'Please specify here if the DEV mode shall be activated'
+                  type: boolean
                 ingress:
                   description: 'Please specify here if ingress shall be enabled for the deployment'
                   type: boolean
@@ -592,6 +595,12 @@ spec:
                           openApis:
                             description: Please specify here the name of the openapi specification that shall be cached
                             type: string
+                          exclude:
+                            description: Please specify here, which endpoints shall be excluded from the cache
+                            type: string
+                          include:
+                            description: Please specify here, which endpoints shall be included in the cache
+                            type: string
                 restcruds:
                   description: 'Please add here the link to all the restcruds that shall be deployed within this grapi'
                   type: array
@@ -692,6 +701,12 @@ spec:
                             type: string
                           appName:
                             description: Please specify here the application name for the fuzzy endpoint
+                            type: string
+                          include:
+                            description: Please specify here includes for the fuzzy endpoint
+                            type: string
+                          exclude:
+                            description: Please specify here excludes for the fuzzy endpoint
                             type: string
                 prepatches:
                   description: 'Please add here a patch script (base64 encoded) that shall run before datasource creation'

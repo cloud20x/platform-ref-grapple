@@ -46,13 +46,14 @@ spec:
             chart:
               name: grapi
               repository: oci://public.ecr.aws/p7h7z5g3
-              version: 0.2.1
+              version: 0.2.2
             namespace: # patched
             values:
               name: # patched
               asname: ""
               grapiversion: "0.0.1"
               clusterdomain: ""
+              dev: false
               ingress: true
               ssl: false
               sslissuer: letsencrypt-prod-cloud20x
@@ -65,8 +66,8 @@ spec:
               runimages: true
               deployimages: false
               imagetag: ""
-              # beimage: grpl/loopback
-              # beimagetag: v0.121
+              # beimage: grpl/grapi
+              # beimagetag: 0.2.2
               translations: false
               apiregistry: false
               graphql: false
@@ -104,6 +105,12 @@ spec:
                     name: grsf-config
                     namespace: grpl-system
                     key: clusterdomain
+              - name: dev
+                valueFrom:
+                  secretKeyRef: 
+                    name: grsf-config
+                    namespace: grpl-system
+                    key: dev
               - name: sslissuer
                 valueFrom:
                   secretKeyRef: 
@@ -167,6 +174,8 @@ spec:
           toFieldPath: spec.forProvider.values.grapiversion
         - fromFieldPath: spec.clusterdomain
           toFieldPath: spec.forProvider.values.clusterdomain
+        - fromFieldPath: spec.dev
+          toFieldPath: spec.forProvider.values.dev
         - fromFieldPath: spec.ingress
           toFieldPath: spec.forProvider.values.ingress
         - fromFieldPath: spec.ssl
