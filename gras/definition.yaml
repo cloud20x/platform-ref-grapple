@@ -55,6 +55,9 @@ spec:
                 customheader:
                   description: 'Please specify here the custom header content protecting the grapple ApplicationSet'
                   type: string
+                dev:
+                  description: 'Please specify here if the DEV mode shall be activated'
+                  type: boolean
                 grapis:
                   description: 'Please add here the grapis for this gras ApplicationSet'
                   type: array
