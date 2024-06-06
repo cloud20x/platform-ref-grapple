@@ -91,89 +91,166 @@ spec:
           properties:
             spec:
               type: object
+              description: Specification of the desired behavior of the gruim (grapple UI modules). gruim.spec is the specification of the desired behavior of the grapple UI modules.
               properties:
                 name:
                   type: string
+                  description: "This field can be used to tweak the name of the gruim (grapple UI modules). \nIt is optional and shall only be used if required.\n(Default: \"\")\n"
                 asname:
                   type: string
+                  description: 'This field can be used to tweak the name of the parent gras (grapple ApplicationSet). It is optional and shall only be used if required. (Default: "")'
                 gruimversion:
-                  description: 'Please specify here the version of gruim'
                   type: string
+                  description: 'Please specify here the version of gruim (grapple UI modules)'
                 clusterdomain:
-                  description: 'Please specify here the clusterdomain of the target cluster'
                   type: string
-                dev:
-                  description: 'Please specify here if the DEV mode shall be activated'
-                  type: boolean
-                ingress:
-                  description: 'Please specify here if ingress shall be enabled for the deployment'
-                  type: boolean
-                ssl:
-                  description: 'Please specify here if ssl shall be configured for the deployment'
-                  type: boolean
-                sslissuer:
-                  description: 'Please specify here the ssl issuer'
-                  type: string
+                  description: "Please specify here the clusterdomain of the target cluster. \nonly use this field if not specified in the grapple config or the gras (grapple ApplicationSet).\n(Default: \"\" - usually defined in the grapple config secret)\n"
                 customheader:
-                  description: 'Please specify here the custom header content protecting the gruim'
                   type: string
+                  description: |
+                    Please specify here the custom header content protecting the gruim (grapple UI modules)
+                    This value can be used to override the header specified in the gras (grapple ApplicationSet).
+                    (Default: "")
+                dev:
+                  type: boolean
+                  description: |
+                    Please specify here if the DEV mode shall be activated for this gruim (grapple UI modules)
+                    this value can be used to override the header specified in the gras.
+                    (Default: false)
+                ingress:
+                  type: boolean
+                  description: |
+                    Please specify here if ingress shall be enabled for the gruim (grapple UI modules service)
+                    (Default: true)
+                ssl:
+                  type: boolean
+                  description: |
+                    Please specify here if ssl shall be configured for the gruim (grapple UI modules ingress)
+                    (Default: false)
+                sslissuer:
+                  type: string
+                  description: |
+                    Please specify here the ssl issuer for the gruim (grapple UI modules)
+                    (Default: "")
                 buildimages:
-                  description: 'Shall images be built (pre-baked) for this deployment?'
                   type: boolean
+                  description: | 
+                    Shall images be built (pre-baked) for this gruim (grapple UI modules)
+                    (Default: false)
+                    This feature is currently still under development
                 buildimagecache:
-                  description: 'Shall a cache be used for building the images?'
                   type: boolean
+                  description: | 
+                    Shall a cache be used for building the images for this gruim (grapple UI modules)?
+                    (Default: false)
+                    This feature is currently still under development
                 runimages:
-                  description: 'Shall the deployment be run directly?'
                   type: boolean
+                  description: | 
+                    Shall the images for this gruim (grapple UI modules) be run directly?
+                    (Default: true)
                 deployimages:
-                  description: 'Shall the (pre-baked) images be deployed? (if an imagetag is specified)'
                   type: boolean
+                  description: |
+                    Shall the (pre-baked) images be deployed?
+                    Please make sure, an "imagetag" is specified
+                    (Default: false)
+                    This feature is currently still under development
                 imagetag:
-                  description: 'Please specify here the imagetag that shall be deployed'
                   type: string
+                  description: | 
+                    Please specify here the imagetag for the gruim (grapple UI modules) image that shall be deployed
+                    (Default: "")
+                    This feature is currently still under development
                 uiimage:
-                  description: 'Please specify here the image repository for the ui modules'
                   type: string
+                  description: | 
+                    Please specify here the image repository for the  gruim (grapple UI modules) base image
+                    (Default: "grpl/gruim")
                 uiimagetag:
-                  description: 'Please specify here the image tag for the ui modules'
                   type: string
+                  description: |
+                    Please specify here the image tag for the gruim (grapple UI modules) base image.
+                    (Default: "0.2.4")
                 uimodules:
-                  description: 'Please specify whether to deploy ui modules or only the be (api)'
                   type: boolean
+                  description: | 
+                    Please specify whether to deploy the gruim (grapple UI modules)
+                    or only the grapi (grapple API)
+                    (Default: true)
                 monitoring:
-                  description: 'Please specify whether monitoring should be enabled'
+                  description: |
+                    Please specify whether the extended monitoring endpoint should be enabled for this gruim (grapple UI modules)?
+                    (Default: true)
                   type: boolean
                 ### settings for the UI
                 mapi:
-                  description: 'Please specify here the name of the mapi that contains definitions for the API behind the gruim'
                   type: string
+                  description: |
+                    Please specify here the name of the mapi (kubectl get mapi (in the same namespace))
+                    that contains definitions for the API behind the gruim (grapple UI modules)
+                    This field is usually filled automatically by the gras (grapple ApplicationSet)
+                    But can be overwritten/adjusted here
                 openapi:
-                  description: 'Please specify here the url for the openapi specification'
                   type: string
+                  description: |
+                    Please specify here the url of the openapi specification 
+                    that contains definitions for the API behind the gruim (grapple UI modules)
+                    This field is usually filled automatically by the gras (grapple ApplicationSet)
+                    But can be overwritten/adjusted here
                 endpoint:
-                  description: 'Please specify here the endpoint for the openapi service'
                   type: string
+                  description: |
+                    Please specify here the url of the openapi endpoint 
+                    that serves API reqeusts for the gruim (grapple UI modules)
+                    This field is usually filled automatically by the gras (grapple ApplicationSet)
+                    But can be overwritten/adjusted here
                 style:
-                  description: 'Please specify here the style for the ui modules'
                   type: string
+                  description: |
+                    Please specify here the style for the gruim (grapple UI modules)
+                    The style is defined in a tailwind CSS styling format
+                    https://tailwindcss.com/
+                    example:
+                    {"colors":{"primary":{"DEFAULT":"#ff7300","fg":"#fff"},"accent":{"DEFAULT":"#808080","fg":"#fff"}}}
                 config:
-                  description: 'Please specify here the config for the ui modules'
                   type: string
+                  description: |
+                    Please configure here the appearance of the gruim (grapple UI modules)
+                    This will amend the appearance of the UI modules.
+                    TODO: add link to the documentation on grapple-solutions.com
+                    Documentation:
+                    https://${NS}-${GRASNAME}-gruim.${DOMAIN}/documentation/
+                    example:
+                    {"global":{"list-size":10,"field-properties":{"id":{"readonly":false}},"weekStart": 1},"schema":{"Trainer":{"field-order":["id","vorname","name","email","aktiv","SummerRateBefore","SummerRateAfter","WinterRateBefore","WinterRateAfter","ClubRate","notizen","token"]},"Kunde":{"field-order":["id","bexioId","name","vorname","mail","ort","plz","strasse","land"]},"Gruppe":{"field-order":["id","gruppenname","beschreibung","gruppentyp","notizen"]},"Product":{"field-order":["id","bexioId","interncode","internname","interndescription","saleprice","taxid","articlegroupid"]},"Rapport":{"field-order":["id","datum","invoicedIn","trainer","kunde","gruppe","platz","startzeit","trainingsdauer","trainingType","nachholtermin","probetraining","archived","notizen"]}}}
+                    (Default: "")
                 additionalpackages:
-                  description: 'Please specify here the additional packags that need to be installed for the ui modules'
                   type: string
+                  description: |
+                    Please specify here the additional npm packages 
+                    that need to be installed for the gruim (grapple UI modules)
+                    example:
+                    svelte-fullcalendar@2.0.0-beta.0 @fullcalendar/common@5.10.1 @fullcalendar/core@5.10.1 @fullcalendar/daygrid@5.10.1 @fullcalendar/interaction@5.10.1 @fullcalendar/timegrid@5.10.1 dayjs@1.11.2
+                    (Default: "")
                 custommodules:
-                  description: 'Please add here base64 encoded custom modules that shall be injected into'
                   type: array
+                  description: |
+                    'Please add here base64 encoded custom modules that shall be injected into'
+                    Please specify here the additional npm packages 
+                    that need to be installed for the gruim (grapple UI modules)
                   items:
                     type: object
                     properties:
                       name:
-                        description: please specify the name for the custom ui modules
+                        description: please specify the name for the custom UI modules in the gruim (grapple UI modules)
                         type: string
                       content:
-                        description: please specify the content/code for the custom ui modules
+                        description: |
+                          Please specify the content/code for the custom UI modules injection 
+                          in the gruim (grapple UI modules)
+                          (base64 encoded string)
+                          example:
+                          TODO: add a simple example for a module injection
                         type: string
                 # required:
                 #   - id

@@ -72,6 +72,7 @@ spec:
           properties:
             spec:
               type: object
+              description: Specification of the desired actions after deploying a managed DataSource (mds). mds.spec is the specification of the desired behavior of the managed DataSource
               properties:
                 name:
                   type: string

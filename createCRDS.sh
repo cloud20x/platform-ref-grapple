@@ -18,19 +18,19 @@ for z in ${dstypes[*]}; do
 
   dstype=$z
   echo "extend CRD for datasource type: $dstype"
-  desc="specs for datasource type ${dstype}"
+  desc="Please specify the specs for datasource type ${dstype}"
   yq -i "${BASELOCATIONDS}.properties.spec.properties += {\"${dstype}\": { \"description\": \"${desc}\", \"type\": \"object\", \"properties\": {} } }" grapi/definition.yaml
   setting="name"
-  desc="please provide a name for the datasource"
+  desc="Please provide a name for the datasource"
   type="string"
   yq -i "${BASELOCATIONDS}.properties.spec.properties.${dstype}.properties += {\"${setting}\": { \"description\": \"${desc}\", \"type\": \"${type}\" } }" grapi/definition.yaml
   setting="connector"
-  desc="please provide the connector type for the datasource"
+  desc="Please provide the connector type for the datasource - Default: ${dstype}"
   type="string"
   yq -i "${BASELOCATIONDS}.properties.spec.properties.${dstype}.properties += {\"${setting}\": { \"description\": \"${desc}\", \"type\": \"${type}\", \"default\": \"${dstype}\" } }" grapi/definition.yaml
   cat connectors.json | jq -r ".\"${dstype}\".settings | keys[]" | while read -r setting; do 
     # echo "do something with ${setting}"; 
-    desc="spec for ${setting} for datasource ${dstype}"
+    desc="Spec for ${setting} for datasource ${dstype}"
     type="string"
     yq -i "${BASELOCATIONDS}.properties.spec.properties.${dstype}.properties += {\"${setting}\": { \"description\": \"${desc}\", \"type\": \"${type}\" } }" grapi/definition.yaml
   done
@@ -158,22 +158,22 @@ type="string"
 echo "Patching: $name --- $type"
 yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties += {\"${name}\": { \"description\": \"${desc}\", \"type\": \"${type}\" } }" grapi/definition.yaml
 name="cacheTTL"
-desc="Please specify here the cache TTL for the cache storage"
+desc="Please specify here the cache TTL for the cache storage in seconds\nexample:\n60000"
 type="integer"
 echo "Patching: $name --- $type"
 yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties += {\"${name}\": { \"description\": \"${desc}\", \"type\": \"${type}\" } }" grapi/definition.yaml
 name="openApis"
-desc="Please specify here the name of the openapi specification that shall be cached"
+desc="Please specify here the name of the openapi specification that shall be cached\nOnly specify a reference to the name of the openapi resource in the grapi (grapple API)"
 type="string"
 echo "Patching: $name --- $type"
 yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties += {\"${name}\": { \"description\": \"${desc}\", \"type\": \"${type}\" } }" grapi/definition.yaml
 name="exclude"
-desc="Please specify here, which endpoints shall be excluded from the cache"
+desc="Please specify here, which endpoints shall be excluded from the cache\nexample:\n*:employees/*"
 type="string"
 echo "Patching: $name --- $type"
 yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties += {\"${name}\": { \"description\": \"${desc}\", \"type\": \"${type}\" } }" grapi/definition.yaml
 name="include"
-desc="Please specify here, which endpoints shall be included in the cache"
+desc="Please specify here, which endpoints shall be included in the cache\nexample:\n*:customers/*\nif specified, everything else is excluded."
 type="string"
 echo "Patching: $name --- $type"
 yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties += {\"${name}\": { \"description\": \"${desc}\", \"type\": \"${type}\" } }" grapi/definition.yaml
@@ -198,7 +198,7 @@ default="false"
 echo "Patching: $name --- $type"
 yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties += {\"${name}\": { \"description\": \"${desc}\", \"type\": \"${type}\" , \"default\": ${default} } }" grapi/definition.yaml
 name="datasource"
-desc="Please specify here the name of the datasource for which the fuzzy search endpoint shall be generated"
+desc="Please specify here the name of the datasource for which\nthe fuzzy search endpoint shall be generated\nSpecify only the name of the datasource as a reference"
 type="string"
 echo "Patching: $name --- $type"
 yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties += {\"${name}\": { \"description\": \"${desc}\", \"type\": \"${type}\" } }" grapi/definition.yaml
@@ -208,12 +208,12 @@ type="string"
 echo "Patching: $name --- $type"
 yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties += {\"${name}\": { \"description\": \"${desc}\", \"type\": \"${type}\" } }" grapi/definition.yaml
 name="include"
-desc="Please specify here includes for the fuzzy endpoint"
+desc="Please specify here includes for the fuzzy endpoint\nexample:\n*:customers/*"
 type="string"
 echo "Patching: $name --- $type"
 yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties += {\"${name}\": { \"description\": \"${desc}\", \"type\": \"${type}\" } }" grapi/definition.yaml
 name="exclude"
-desc="Please specify here excludes for the fuzzy endpoint"
+desc="Please specify here excludes for the fuzzy endpoint\nexample:\n*:employees/*"
 type="string"
 echo "Patching: $name --- $type"
 yq -i "${BASELOCATION}.${crd}.items.properties.spec.properties += {\"${name}\": { \"description\": \"${desc}\", \"type\": \"${type}\" } }" grapi/definition.yaml

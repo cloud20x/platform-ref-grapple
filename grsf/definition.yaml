@@ -33,6 +33,7 @@ spec:
           type: object
           properties:
             spec:
+              description: Specification of the desired behavior of the grapple solution framework (grsf). grsf.spec is the specification of the desired behavior of the grapple solution framework.
               type: object
               properties:
                 name:

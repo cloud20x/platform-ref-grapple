@@ -78,6 +78,7 @@ spec:
           properties:
             spec:
               type: object
+              description: Specification of the desired actions after deploying a managed UI modules (muim). muim.spec is the specification of the desired behavior of the managed UI modules
               properties:
                 name:
                   type: string

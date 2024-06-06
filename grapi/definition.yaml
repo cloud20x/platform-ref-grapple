@@ -79,281 +79,385 @@ spec:
           properties:
             spec:
               type: object
+              description: Specification of the desired behavior of the grapple API (grapi). grapi.spec is the specification of the desired behavior of the grapple API.
               properties:
                 name:
+                  description: "This field can be used to tweak the name of the grapi. \nIt is optional and shall only be used if required.\n(Default: \"\")\n"
                   type: string
                 asname:
+                  description: |
+                    This field can be used to tweak the name of the parent gras (grapple ApplicationSet).
+                    It is optional and shall only be used if required.
+                    (Default: "")
                   type: string
                 grapiversion:
-                  description: 'Please specify here the version of grapi'
+                  description: 'Please specify here the version of grapple API (grapi)'
                   type: string
                 clusterdomain:
-                  description: 'Please specify here the clusterdomain of the target cluster'
+                  description: "Please specify here the clusterdomain of the target cluster. \nonly use this field if not specified in the grapple config or the gras (grapple ApplicationSet).\n(Default: \"\" - usually defined in the grapple config secret)\n"
+                  type: string
+                customheader:
+                  description: |
+                    Please specify here the custom header content protecting the grapi (grapple API)
+                    This value can be used to override the header specified in the gras (grapple ApplicationSet).
+                    (Default: "")
                   type: string
                 dev:
-                  description: 'Please specify here if the DEV mode shall be activated'
+                  description: |
+                    Please specify here if the DEV mode shall be activated for this grapi (grapple API)
+                    this value can be used to override the header specified in the gras.
+                    (Default: false)
                   type: boolean
                 ingress:
-                  description: 'Please specify here if ingress shall be enabled for the deployment'
+                  description: |
+                    Please specify here if ingress shall be enabled for the grapi (grapple API service)
+                    (Default: true)
                   type: boolean
                 ssl:
-                  description: 'Please specify here if ssl shall be configured for the deployment'
+                  description: |
+                    Please specify here if ssl shall be configured for the grapi (grapple API ingress)
+                    (Default: false)
                   type: boolean
                 sslissuer:
-                  description: 'Please specify here the ssl issuer'
+                  description: |
+                    Please specify here the ssl issuer for the grapi (grapple API ingress)
+                    (Default: "")
                   type: string
                 disableexplorer:
-                  description: 'Please specify "true" if you want to disable the explorer (default: false)'
+                  description: |
+                    Please specify "true" if you want to disable the explorer of the the grapi (grapple API) deployment
+                    (Default: false)
                   type: boolean
-                customheader:
-                  description: 'Please specify here the custom header content protecting the grapi'
-                  type: string
                 corsurls:
-                  description: 'Please specify here the allowed cors urls for protecting the grapi (e.g. "http://localhost:3000,http://localhost:2000")'
+                  description: |
+                    Please specify here the allowed cors urls for protecting the grapi (grapple API)
+                    (e.g. "http://localhost:3000,http://localhost:2000")
+                    (Default: "")
                   type: string
                 auth:
-                  description: 'Please specify here if authentication shall be enabled for the deployment (default: false)'
+                  description: |
+                    Please specify here if authentication shall be enabled for the grapi (grapple API)
+                    (Default: false)
                   type: boolean
                 auth_write_only:
-                  description: 'Please specify here if authentication shall be enabled for write only endpoints (default: false)'
+                  description: |
+                    Please specify here if authentication shall be enabled for write only endpoints on the grapi (grapple API)
+                    (Default: false)
                   type: boolean
                 buildimages:
-                  description: 'Shall images be built (pre-baked) for this deployment?'
+                  description: |
+                    Shall images be built (pre-baked) for this grapi (grapple API)?
+                    (Default: false)
+                    This feature is currently still under development
                   type: boolean
                 buildimagecache:
-                  description: 'Shall a cache be used for building the images?'
+                  description: |
+                    Shall a cache be used for building the images for this grapi (grapple API)?
+                    (Default: false)
+                    This feature is currently still under development
                   type: boolean
                 runimages:
-                  description: 'Shall the deployment be run directly?'
+                  description: |
+                    Shall the images for this grapi (grapple API) be run directly?
+                    (Default: true)
                   type: boolean
                 deployimages:
-                  description: 'Shall the (pre-baked) images be deployed? (if an imagetag is specified)'
+                  description: |
+                    Shall the (pre-baked) images be deployed?
+                    Please make sure, an "imagetag" is specified
+                    (Default: false)
+                    This feature is currently still under development
                   type: boolean
                 imagetag:
-                  description: 'Please specify here the imagetag that shall be deployed'
+                  description: |
+                    Please specify here the imagetag for the grapi (grapple API) image that shall be deployed
+                    (Default: "")
+                    This feature is currently still under development
                   type: string
                 beimage:
-                  description: 'Please specify here the image repository for the backend'
+                  description: |
+                    Please specify here the image repository for the grapi (grapple API) base image
+                    (Default: "grpl/grapi")
                   type: string
                 beimagetag:
-                  description: 'Please specify here the image tag for the backend'
+                  description: |
+                    Please specify here the image tag for the grapi (grapple API) base image.
+                    (Default: "0.2.4")
                   type: string
-                # uiimage:
-                #   description: 'Please specify here the image repository for the ui modules'
-                #   type: string
-                # uiimagetag:
-                #   description: 'Please specify here the image tag for the ui modules'
-                #   type: string
-                # uimodules:
-                #   description: 'Please specify whether to deploy ui modules or only the be (api)'
+                # improve the implementation of translations: https://wolke7.atlassian.net/browse/GSF-71
+                # translations:
+                #   description: 'Please specify whether translations shall be enabled for the grapi (grapple API)'
                 #   type: boolean
-                translations:
-                  description: 'Please specify whether translations shall be enabled'
-                  type: boolean
-                apiregistry:
-                  description: 'Please specify whether apiregistry shall be enabled'
-                  type: boolean
+                # improve the implementation of translations - should be implemented using the mapi...
+                # apiregistry:
+                #   description: 'Please specify whether apiregistry shall be enabled'
+                #   type: boolean
                 graphql:
-                  description: 'Please specify whether to deploy a graphql interface for the api'
+                  description: |
+                    Please specify whether to deploy a graphql interface for the grapi (grapple API)?
+                    (Default: false)
                   type: boolean
                 monitoring:
-                  description: 'Please specify whether monitoring should be enabled'
+                  description: |
+                    Please specify whether the extended monitoring endpoint should be enabled for this grapi (grapple API)?
+                    (Default: true)
                   type: boolean
                 discoveredrepos:
-                  description: 'Please specify whether to automatically discover the repositories'
+                  description: |
+                    Please specify whether to automatically discover the repositories for the models in this grapi (grapple API)?
+                    (Default: true)
                   type: boolean
                 externalsecrets:
-                  description: 'Please add here the externalsecrets for this grapi'
+                  description: |
+                    Please add here the externalsecrets for this grapi (grapple API)
+                    you can attach multiple externalsecrets specifications to your grapi (grapple API)
+                    all variables in the secret become available to the grapi (grapple API):
+                    https://external-secrets.io/
+                    example:
+                      externalsecrets:
+                      - name: classicmodelsas-auroramysql
+                        spec:
+                          refreshInterval: 1h
+                          secretStoreRef:
+                            name: aws-secretstore
+                            kind: ClusterSecretStore
+                          target:
+                            name: mytarget
+                            creationPolicy: Owner
+                          dataFrom:
+                          - extract:
+                              key: "mysecret"
                   type: array
                   items:
                     type: object
                     properties:
                       name:
-                        description: please specify the name for the object
+                        description: please specify the name for the externalsecrets object
                         type: string
                       spec:
-                        description: please specify the spec for the externalsecrets - verify against kubectl get crd externalsecrets.external-secrets.io -o yaml
+                        description: |
+                          Please specify the spec for the externalsecrets
+                          verify against:
+                          kubectl explain externalsecrets.spec
+                          https://external-secrets.io/
                         type: object
                         # allows to specify anything in the object... no verification whatsoever...
                         x-kubernetes-preserve-unknown-fields: true
-                automigrate:
-                  description: 'Please specify whether to automatically migrate the datasource'
-                  type: boolean
-                autorestartgruim:
-                  description: 'auto-restart the gruim on a change in the grapi spec'
-                  type: boolean
-                  default: false
                 extraSecrets:
-                  description: 'Please add here the extraSecrets for this grapi'
+                  description: "Please add here the extraSecrets for this grapi (grapple API)\nyou can just reference the name of a secret and all parameters \nbecome available inside the grapi (grapple API) deployment as variables\n"
                   type: array
                   items:
                     type: string
+                automigrate:
+                  description: "Please specify whether to automatically migrate the datasource in this grapi (grapple API)? \nruns: \"npm run migrate\"\nfurther information:\nhttps://loopback.io/doc/en/lb4/Database-migrations.html\n"
+                  type: boolean
+                autorestartgruim:
+                  description: "auto-restart the gruim (grapple UI module) on a change in the grapi (grapple API) spec \nusing a kubernetes cronjob?\n(Default: false)\n"
+                  type: boolean
+                  default: false
                 initContainers:
-                  description: "specify initContainers that shall run successfully before starting the grapi"
+                  description: |
+                    specify initContainers that shall run successfully before starting the grapi (grapple API)
+                    example:
+                      initContainers:
+                      - name: init-db
+                        spec:
+                          command:
+                          - bash
+                          - -c
+                          - sleep 5; COMMAND_TO_EXECUTE
+                          image: mysql
+                          name: init-db
                   type: array
                   items:
                     type: object
                     properties:
                       name:
-                        description: please specify the name for the initContainers
+                        description: please specify the name for the initContainer
                         type: string
                       spec:
-                        description: please specify the spec for the grapi initContainers - verify against "kubectl explain pod.spec.initContainers"
+                        description: |
+                          please specify the spec for the grapi (grapple API) initContainer
+                          verify against:
+                          kubectl explain pod.spec.initContainers
                         type: object
                         # allows to specify anything in the object... no verification whatsoever...
                         x-kubernetes-preserve-unknown-fields: true
                 volumes:
-                  description: "specify volumes that shall run successfully before starting the grapi"
+                  description: "Specify additional volumes that shall be attached to the grapi (grapple API)\nverify against: \nkubectl explain pod.spec.volumes\n"
                   type: array
                   items:
-                    description: please specify the spec for the grapi volumes - verify against "kubectl explain pod.spec.volumes"
+                    description: |
+                      please specify the spec for the grapi (grapple API) volumes
+                      verify against:
+                      kubectl explain pod.spec.volumes
                     type: object
                     x-kubernetes-preserve-unknown-fields: true
                 volumeMounts:
-                  description: "specify volumeMounts that shall run successfully before starting the grapi"
+                  description: |
+                    specify volumeMounts that shall be mounted to the grapi (grapple API)
+                    verify against:
+                    kubectl explain pod.spec.containers.volumeMounts
                   type: array
                   items:
-                    description: please specify the spec for the grapi volumeMounts - verify against "kubectl explain pod.spec.containers.volumeMounts"
+                    description: |
+                      please specify the spec for the grapi (grapple API) volumeMounts
+                      verify against:
+                      kubectl explain pod.spec.containers.volumeMounts
                     type: object
                     x-kubernetes-preserve-unknown-fields: true
                 datasources:
-                  description: 'Please add here the link to all the datasources that shall be deployed within this grapi'
+                  description: |
+                    Please add here all the datasources that shall be deployed within this grapi (grapple API)
+                    further information:
+                    https://loopback.io/doc/en/lb4/DataSource-generator.html
                   type: array
                   items:
                     type: object
                     properties:
                       name:
-                        description: please specify the name for the object
+                        description: please specify the name for the datasource
                         type: string
                       content:
-                        description: please specify the content for the object
+                        description: |
+                          please specify the content for the datasource in form of a json string
+                          example:
+                          {"name":"classicmodels","connector":"mysql","url":"","host":"DBHOST","port":"DBPORT","user":"DBUSER","password":"DBPW","database":"DBSCHEMA"}
+                          or use the spec for yaml format
                         type: string
                       spec:
                         type: object
                         properties:
                           mysql:
-                            description: specs for datasource type mysql
+                            description: Please specify the specs for datasource type mysql
                             type: object
                             properties:
                               name:
-                                description: please provide a name for the datasource
+                                description: Please provide a name for the datasource
                                 type: string
                               connector:
-                                description: please provide the connector type for the datasource
+                                description: 'Please provide the connector type for the datasource - Default: mysql'
                                 type: string
                                 default: mysql
                               database:
-                                description: spec for database for datasource mysql
+                                description: Spec for database for datasource mysql
                                 type: string
                               host:
-                                description: spec for host for datasource mysql
+                                description: Spec for host for datasource mysql
                                 type: string
                               password:
-                                description: spec for password for datasource mysql
+                                description: Spec for password for datasource mysql
                                 type: string
                               port:
-                                description: spec for port for datasource mysql
+                                description: Spec for port for datasource mysql
                                 type: string
                               url:
-                                description: spec for url for datasource mysql
+                                description: Spec for url for datasource mysql
                                 type: string
                               user:
-                                description: spec for user for datasource mysql
+                                description: Spec for user for datasource mysql
                                 type: string
                           postgresql:
-                            description: specs for datasource type postgresql
+                            description: Please specify the specs for datasource type postgresql
                             type: object
                             properties:
                               name:
-                                description: please provide a name for the datasource
+                                description: Please provide a name for the datasource
                                 type: string
                               connector:
-                                description: please provide the connector type for the datasource
+                                description: 'Please provide the connector type for the datasource - Default: postgresql'
                                 type: string
                                 default: postgresql
                               database:
-                                description: spec for database for datasource postgresql
+                                description: Spec for database for datasource postgresql
                                 type: string
                               host:
-                                description: spec for host for datasource postgresql
+                                description: Spec for host for datasource postgresql
                                 type: string
                               password:
-                                description: spec for password for datasource postgresql
+                                description: Spec for password for datasource postgresql
                                 type: string
                               port:
-                                description: spec for port for datasource postgresql
+                                description: Spec for port for datasource postgresql
                                 type: string
                               url:
-                                description: spec for url for datasource postgresql
+                                description: Spec for url for datasource postgresql
                                 type: string
                               user:
-                                description: spec for user for datasource postgresql
+                                description: Spec for user for datasource postgresql
                                 type: string
                           kv-redis:
-                            description: specs for datasource type kv-redis
+                            description: Please specify the specs for datasource type kv-redis
                             type: object
                             properties:
                               name:
-                                description: please provide a name for the datasource
+                                description: Please provide a name for the datasource
                                 type: string
                               connector:
-                                description: please provide the connector type for the datasource
+                                description: 'Please provide the connector type for the datasource - Default: kv-redis'
                                 type: string
                                 default: kv-redis
                               db:
-                                description: spec for db for datasource kv-redis
+                                description: Spec for db for datasource kv-redis
                                 type: string
                               host:
-                                description: spec for host for datasource kv-redis
+                                description: Spec for host for datasource kv-redis
                                 type: string
                               password:
-                                description: spec for password for datasource kv-redis
+                                description: Spec for password for datasource kv-redis
                                 type: string
                               port:
-                                description: spec for port for datasource kv-redis
+                                description: Spec for port for datasource kv-redis
                                 type: string
                               url:
-                                description: spec for url for datasource kv-redis
+                                description: Spec for url for datasource kv-redis
                                 type: string
                           kv-memory:
-                            description: specs for datasource type kv-memory
+                            description: Please specify the specs for datasource type kv-memory
                             type: object
                             properties:
                               name:
-                                description: please provide a name for the datasource
+                                description: Please provide a name for the datasource
                                 type: string
                               connector:
-                                description: please provide the connector type for the datasource
+                                description: 'Please provide the connector type for the datasource - Default: kv-memory'
                                 type: string
                                 default: kv-memory
                           memory:
-                            description: specs for datasource type memory
+                            description: Please specify the specs for datasource type memory
                             type: object
                             properties:
                               name:
-                                description: please provide a name for the datasource
+                                description: Please provide a name for the datasource
                                 type: string
                               connector:
-                                description: please provide the connector type for the datasource
+                                description: 'Please provide the connector type for the datasource - Default: memory'
                                 type: string
                                 default: memory
                               file:
-                                description: spec for file for datasource memory
+                                description: Spec for file for datasource memory
                                 type: string
                               localStorage:
-                                description: spec for localStorage for datasource memory
+                                description: Spec for localStorage for datasource memory
                                 type: string
                 discoveries:
-                  description: 'Please add here the link to all the discoveries that shall be deployed within this grapi'
+                  description: |
+                    Please add here all the discoveries that shall be executed within this grapi (grapple API)
+                    further information:
+                    https://loopback.io/doc/en/lb4/Discovering-models.html
                   type: array
                   items:
                     type: object
                     properties:
                       name:
-                        description: please specify the name for the object
+                        description: please specify the name for the discovery
                         type: string
                       content:
-                        description: please specify the content for the object
+                        description: |
+                          please specify the content for the discovery in form of a json string
+                          example:
+                          {"dataSource":"classicmodels","schema":"DBSCHEMA","all":"true","disableCamelCase":false,"yes":"undefined"}
+                          or use the spec for yaml format
                         type: string
                       spec:
                         type: object
@@ -386,16 +490,23 @@ spec:
                             description: disableCamelCase
                             type: boolean
                 models:
-                  description: 'Please add here the link to all the models that shall be deployed within this grapi'
+                  description: |
+                    Please add here all the models that shall be deployed within this grapi (grapple API)
+                    further information:
+                    https://loopback.io/doc/en/lb4/Model-generator.html
                   type: array
                   items:
                     type: object
                     properties:
                       name:
-                        description: please specify the name for the object
+                        description: please specify the name for the model
                         type: string
                       content:
-                        description: please specify the content for the object
+                        description: |
+                          please specify the content for the models in form of a json string
+                          example:
+                          {"base":"Entity","name":"customer","properties":{"id":{"type":"number","id":true,"required":true,"generated":true},"customername":{"type":"string"},"emaildomain":{"type":"string","required":true},"datecreated":{"type":"date","required":false},"datelastupdated":{"type":"date","required":false}}}
+                          or use the spec for yaml format
                         type: string
                       spec:
                         type: object
@@ -442,17 +553,27 @@ spec:
                                 length:
                                   description: length
                                   type: string
+                                defaultFn:
+                                  description: defaultFn
+                                  type: string
                 relations:
-                  description: 'Please add here the link to all the relations that shall be deployed within this grapi'
+                  description: |
+                    Please add here all the relations that shall be deployed within this grapi (grapple API)
+                    further information:
+                    https://loopback.io/doc/en/lb4/Relation-generator.html
                   type: array
                   items:
                     type: object
                     properties:
                       name:
-                        description: please specify the name for the object
+                        description: please specify the name for the relation
                         type: string
                       content:
-                        description: please specify the content for the object
+                        description: |
+                          please specify the content for the relation in form of a json string
+                          example:
+                          {"destinationModel":"Employees","foreignKeyName":"employeesId","registerInclusionResolver":true,"relationName":"employees","relationType":"belongsTo","sourceModel":"Customers"}
+                          or use the spec for yaml format
                         type: string
                       spec:
                         type: object
@@ -506,16 +627,23 @@ spec:
                             description: Allow <sourceModel> queries to include data from related <destinationModel>
                             type: boolean
                 serviceproviders:
-                  description: 'Please add here the link to all the serviceproviders that shall be deployed within this grapi'
+                  description: |
+                    Please add here all the serviceproviders that shall be deployed within this grapi (grapple API)
+                    further information:
+                    https://loopback.io/doc/en/lb4/Service-generator.html
                   type: array
                   items:
                     type: object
                     properties:
                       name:
-                        description: please specify the name for the object
+                        description: please specify the name for the service
                         type: string
                       content:
-                        description: please specify the content for the object
+                        description: |
+                          please specify the content for the service in form of a json string
+                          example:
+                          {"name": "serviceNameToBeGenerated","datasource": "validDataSourceName"}
+                          or use the spec for yaml format
                         type: string
                       spec:
                         type: object
@@ -524,16 +652,23 @@ spec:
                             description: serviceprovidersproperty
                             type: string
                 openapis:
-                  description: 'Please add here the link to all the openapis that shall be deployed within this grapi'
+                  description: |
+                    Please add here all the openapis that shall be deployed within this grapi (grapple API)
+                    further information:
+                    https://loopback.io/doc/en/lb4/OpenAPI-generator.html
                   type: array
                   items:
                     type: object
                     properties:
                       name:
-                        description: please specify the name for the object
+                        description: please specify the name for the openapi
                         type: string
                       content:
-                        description: please specify the content for the object
+                        description: |
+                          please specify the content for the openapi in form of a json string
+                          example:
+                          {"prefix":"cm","url":"URL_TO_OPENAPI_SPEC","client":true}
+                          or use the spec for yaml format
                         type: string
                       spec:
                         type: object
@@ -572,16 +707,21 @@ spec:
                             description: Only include endpoints with provided regex.
                             type: string
                 cacheconfigs:
-                  description: 'Please specify the configuration of a cache'
+                  description: |
+                    Please add here all the cache configurations that shall be deployed within this grapi (grapple API)
                   type: array
                   items:
                     type: object
                     properties:
                       name:
-                        description: please specify the name for the object
+                        description: please specify the name for the cache configuration
                         type: string
                       content:
-                        description: please specify the content for the object
+                        description: |
+                          please specify the content for the cache configuration in form of a json string
+                          example:
+                          {"redisDS":"redisDS","cacheTTL":6000000,"openApis":"cm","exclude":"*:employees/*"}
+                          or use the spec for yaml format
                         type: string
                       spec:
                         type: object
@@ -590,28 +730,47 @@ spec:
                             description: Please specify here the name of the cache datasource (kv-redis datasource) to be used as cache storage
                             type: string
                           cacheTTL:
-                            description: Please specify here the cache TTL for the cache storage
+                            description: |-
+                              Please specify here the cache TTL for the cache storage in seconds
+                              example:
+                              60000
                             type: integer
                           openApis:
-                            description: Please specify here the name of the openapi specification that shall be cached
+                            description: |-
+                              Please specify here the name of the openapi specification that shall be cached
+                              Only specify a reference to the name of the openapi resource in the grapi (grapple API)
                             type: string
                           exclude:
-                            description: Please specify here, which endpoints shall be excluded from the cache
+                            description: |-
+                              Please specify here, which endpoints shall be excluded from the cache
+                              example:
+                              *:employees/*
                             type: string
                           include:
-                            description: Please specify here, which endpoints shall be included in the cache
+                            description: |-
+                              Please specify here, which endpoints shall be included in the cache
+                              example:
+                              *:customers/*
+                              if specified, everything else is excluded.
                             type: string
                 restcruds:
-                  description: 'Please add here the link to all the restcruds that shall be deployed within this grapi'
+                  description: |
+                    Please add here all the restcruds that shall be generated within this grapi (grapple API)
+                    further information:
+                    https://loopback.io/doc/en/lb4/Rest-Crud-generator.html
                   type: array
                   items:
                     type: object
                     properties:
                       name:
-                        description: please specify the name for the object
+                        description: please specify the name for the restcrud
                         type: string
                       content:
-                        description: please specify the content for the object
+                        description: |
+                          please specify the content for the restcrud in form of a json string
+                          example:
+                          {"datasource":"classicmodels"}
+                          or use the spec for yaml format
                         type: string
                       spec:
                         type: object
@@ -629,16 +788,23 @@ spec:
                             description: Create readonly APIs
                             type: boolean
                 repositories:
-                  description: 'Please add here the link to all the repositories that shall be deployed within this grapi'
+                  description: |
+                    Please add here all the repositories that shall be generated within this grapi (grapple API)
+                    further information:
+                    https://loopback.io/doc/en/lb4/Repository-generator.html
                   type: array
                   items:
                     type: object
                     properties:
                       name:
-                        description: please specify the name for the object
+                        description: please specify the name for the repository
                         type: string
                       content:
-                        description: please specify the content for the object
+                        description: |
+                          please specify the content for the repository in form of a json string
+                          example:
+                          {"name": "repositoryNameToBeGenerated","datasource": "validDataSourceName","model": "validDModelName","id": "anOptionalNameForID","repositoryBaseClass": "validRepositoryBaseClass"}
+                          or use the spec for yaml format
                         type: string
                       spec:
                         type: object
@@ -656,16 +822,23 @@ spec:
                             description: A valid repository base class
                             type: string
                 controllers:
-                  description: 'Please add here the link to all the controllers that shall be deployed within this grapi'
+                  description: |
+                    Please add here all the controllers that shall be generated within this grapi (grapple API)
+                    further information:
+                    https://loopback.io/doc/en/lb4/Controller-generator.html
                   type: array
                   items:
                     type: object
                     properties:
                       name:
-                        description: please specify the name for the object
+                        description: please specify the name for the controller
                         type: string
                       content:
-                        description: please specify the content for the object
+                        description: |
+                          please specify the content for the controller in form of a json string
+                          example:
+                          {"controllerType":"empty"}
+                          or use the spec for yaml format
                         type: string
                       spec:
                         type: object
@@ -674,16 +847,21 @@ spec:
                             description: Type for the %s
                             type: string
                 fuzzysearch:
-                  description: 'Please specify the configuration of a cache'
+                  description: |
+                    Please add here all the fuzzy search configurations that shall be generated within this grapi (grapple API)
                   type: array
                   items:
                     type: object
                     properties:
                       name:
-                        description: please specify the name for the object
+                        description: please specify the name for the fuzzy search configuration
                         type: string
                       content:
-                        description: please specify the content for the object
+                        description: |
+                          please specify the content for the fuzzy search configuration in form of a json string
+                          example:
+                          {"fuzzy":true,"centralFuzzy":true,"datasource":"classicmodels","appName":"Grpl","exclude":"employees"}
+                          or use the spec for yaml format
                         type: string
                       spec:
                         type: object
@@ -697,76 +875,110 @@ spec:
                             type: boolean
                             default: false
                           datasource:
-                            description: Please specify here the name of the datasource for which the fuzzy search endpoint shall be generated
+                            description: |-
+                              Please specify here the name of the datasource for which
+                              the fuzzy search endpoint shall be generated
+                              Specify only the name of the datasource as a reference
                             type: string
                           appName:
                             description: Please specify here the application name for the fuzzy endpoint
                             type: string
                           include:
-                            description: Please specify here includes for the fuzzy endpoint
+                            description: |-
+                              Please specify here includes for the fuzzy endpoint
+                              example:
+                              *:customers/*
                             type: string
                           exclude:
-                            description: Please specify here excludes for the fuzzy endpoint
+                            description: |-
+                              Please specify here excludes for the fuzzy endpoint
+                              example:
+                              *:employees/*
                             type: string
                 prepatches:
-                  description: 'Please add here a patch script (base64 encoded) that shall run before datasource creation'
+                  description: "Please add here a patch script (base64 encoded) that shall run before datasource creation \nwithin this grapi (grapple API)\n"
                   type: array
                   items:
                     type: object
                     properties:
                       name:
-                        description: please specify the name for the object
+                        description: please specify the name for the patch script
                         type: string
                       content:
-                        description: please specify the content for the object
+                        description: |
+                          please specify the content for the patch script
+                          (base64 encoded string)
+                          example:
+                          bnBtIGkgdXVpZAo=
                         type: string
                 prediscoverypatches:
-                  description: 'Please add here a patch script (base64 encoded) that shall run before datasource discovery'
+                  description: "Please add here a patch script (base64 encoded) that shall run before the discovery \nafter datasource creation within this grapi (grapple API)\n"
                   type: array
                   items:
                     type: object
                     properties:
                       name:
-                        description: please specify the name for the object
+                        description: please specify the name for the patch script
                         type: string
                       content:
-                        description: please specify the content for the object
+                        description: |
+                          please specify the content for the patch script
+                          (base64 encoded string)
+                          example:
+                          bnBtIGkgdXVpZAo=
                         type: string
                 prerelationpatches:
-                  description: 'Please add here a patch script (base64 encoded) that shall run before relation creation'
+                  description: "Please add here a patch script (base64 encoded) that shall run before the creation of relations \nwithin this grapi (grapple API)\n"
                   type: array
                   items:
                     type: object
                     properties:
                       name:
-                        description: please specify the name for the object
+                        description: please specify the name for the patch script
                         type: string
                       content:
-                        description: please specify the content for the object
+                        description: |
+                          please specify the content for the patch script
+                          (base64 encoded string)
+                          example:
+                          bnBtIGkgdXVpZAo=
                         type: string
                 postpatches:
-                  description: 'Please add here a patch script (base64 encoded) that shall run after backend creation'
+                  description: |
+                    Please add here a patch script (base64 encoded) that shall run after backend creation
+                    within this grapi (grapple API)
                   type: array
                   items:
                     type: object
                     properties:
                       name:
-                        description: please specify the name for the object
+                        description: please specify the name for the patch script
                         type: string
                       content:
-                        description: please specify the content for the object
+                        description: |
+                          please specify the content for the patch script
+                          (base64 encoded string)
+                          example:
+                          bnBtIGkgdXVpZAo=
                         type: string
                 services:
-                  description: 'Please add here the link to all the services that shall be deployed within this grapi'
+                  description: |
+                    Please add here all the services that shall be generated within this grapi (grapple API)
+                    further information:
+                    https://loopback.io/doc/en/lb4/Service-generator.html
                   type: array
                   items:
                     type: object
                     properties:
                       name:
-                        description: please specify the name for the object
+                        description: please specify the name for the service
                         type: string
                       content:
-                        description: please specify the content for the object
+                        description: |
+                          please specify the content for the service in form of a json string
+                          example:
+                          {"name":"serviceNameToBeGenerated","datasource":"validDataSourceName"}
+                          or use the spec for yaml format
                         type: string
                       spec:
                         type: object
@@ -777,33 +989,3 @@ spec:
                           datasource:
                             description: A valid datasource name
                             type: string
-# ### settings for the UI
-# # openapi:
-# #   description: 'Please specify here the url for the openapi specification'
-# #   type: string
-# # endpoint:
-# #   description: 'Please specify here the endpoint for the openapi service'
-# #   type: string
-# style:
-#   description: 'Please specify here the style for the ui modules'
-#   type: string
-# config:
-#   description: 'Please specify here the config for the ui modules'
-#   type: string
-# additionalpackages:
-#   description: 'Please specify here the additional packags that need to be installed for the ui modules'
-#   type: string
-# custommodules:
-#   description: 'Please add here base64 encoded custom modules that shall be injected into'
-#   type: array
-#   items:
-#     type: object
-#     properties:
-#       name:
-#         description: please specify the name for the custom ui modules
-#         type: string
-#       content:
-#         description: please specify the content/code for the custom ui modules
-#         type: string
-# required:
-#   - id
