@@ -210,6 +210,12 @@ spec:
           toFieldPath: spec.forProvider.values.beimage
         - fromFieldPath: spec.beimagetag
           toFieldPath: spec.forProvider.values.beimagetag
+        - fromFieldPath: spec.autoscaling
+          toFieldPath: spec.forProvider.values.autoscaling
+        - fromFieldPath: spec.resources.runimages.spec
+          toFieldPath: spec.forProvider.values.resources
+        - fromFieldPath: spec.resources.deployimages.spec
+          toFieldPath: spec.forProvider.values.imgresources
         - fromFieldPath: spec.cacheconfigs
           toFieldPath: spec.forProvider.values.cacheconfigs
         - fromFieldPath: spec.fuzzysearch

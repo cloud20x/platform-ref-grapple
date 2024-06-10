@@ -82,6 +82,12 @@ spec:
           toFieldPath: spec.forProvider.values.grasversion
         - fromFieldPath: spec.customheader
           toFieldPath: spec.forProvider.values.customheader
+        - fromFieldPath: spec.autoscaling
+          toFieldPath: spec.forProvider.values.autoscaling
+        - fromFieldPath: spec.resources.runimages.spec
+          toFieldPath: spec.forProvider.values.resources.runimages.spec
+        - fromFieldPath: spec.resources.deployimages.spec
+          toFieldPath: spec.forProvider.values.resources.deployimages.spec
         - fromFieldPath: spec.dev
           toFieldPath: spec.forProvider.values.dev
         - fromFieldPath: spec.grapis

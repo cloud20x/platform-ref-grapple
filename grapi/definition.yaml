@@ -184,6 +184,84 @@ spec:
                     Please specify here the image tag for the grapi (grapple API) base image.
                     (Default: "0.2.4")
                   type: string
+                autoscaling:
+                  description: |
+                    Please define here the scaling definitions for this grapi (grapple API)
+                  type: object
+                  properties:
+                    replicas:
+                      description: |
+                        Please specify the number of replicas for the resources in this grapi (grapple API)
+                        Default: 1
+                      type: integer
+                    minReplicas:
+                      description: |
+                        Please specify the minimum number of replicas for the resources in this grapi (grapple API)
+                        Default: 1
+                      type: integer
+                    maxReplicas:
+                      description: |
+                        Please specify the maximum number of replicas for the resources in this grapi (grapple API)
+                        Default: 20
+                      type: integer
+                    targetCPUUtilizationPercentage:
+                      description: |
+                        Please specify the targetCPUUtilizationPercentage for the resources in this grapi (grapple API)
+                        Default: 60
+                      type: integer
+                      # targetMemoryUtilizationPercentage:
+                      #   description: | 
+                      #     Please specify the targetMemoryUtilizationPercentage for the resources in this grapi (grapple API)
+                      #     Default: undefined
+                      #   type: integer
+                resources:
+                  description: |
+                    Please add here the resource definitions for this grapi (grapple API)
+                  type: object
+                  properties:
+                    runimages:
+                      description: |
+                        Please specify the resource definitions for the resources in this grapi (grapple API) in runimages mode
+                        runimages mode builds the deployment and requires more resources
+                      type: object
+                      properties:
+                        spec:
+                          description: |
+                            Please specify resource definitions for the resources in this grapi (grapple API) in runimages mode
+                            verify against "kubectl explain pod.spec.containers.resources"
+                            example/default:
+                              resources:
+                                requests:
+                                  memory: "256Mi"
+                                limits:
+                                  # when changing memory here, please consider also chaning max_old_space_size in env of be deployment.
+                                  memory: "2Gi"
+                                  cpu: "3000m"
+                          type: object
+                          # allows to specify anything in the object... no verification whatsoever...
+                          x-kubernetes-preserve-unknown-fields: true
+                    deployimages:
+                      description: |
+                        Please specify the resource definitions for the resources in this grapi (grapple API) in deployimages mode
+                        deployimages mode deploys the pre-baked images requires therefore less resources
+                      type: object
+                      properties:
+                        spec:
+                          description: |
+                            Please specify resource definitions for the resources in this grapi (grapple API) in deployimages mode
+                            verify against "kubectl explain pod.spec.containers.resources"
+                            example/default:
+                              resources:
+                                requests:
+                                  memory: "256Mi"
+                                  cpu: "250m"
+                                limits:
+                                  # when changing memory here, please consider also chaning max_old_space_size in env of be deployment.
+                                  memory: "1024Mi"
+                                  cpu: "2000m"
+                          type: object
+                          # allows to specify anything in the object... no verification whatsoever...
+                          x-kubernetes-preserve-unknown-fields: true
                 # improve the implementation of translations: https://wolke7.atlassian.net/browse/GSF-71
                 # translations:
                 #   description: 'Please specify whether translations shall be enabled for the grapi (grapple API)'
