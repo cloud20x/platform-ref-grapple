@@ -1,7 +1,7 @@
 apiVersion: apiextensions.crossplane.io/v1
 kind: CompositeResourceDefinition
 metadata:
-  name: compositegrappleresource.grsf.grpl.io
+  name: compositegrappleresources.grsf.grpl.io
 spec:
   claimNames:
     kind: GrappleResource
