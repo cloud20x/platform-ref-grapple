@@ -1,17 +1,26 @@
 apiVersion: apiextensions.crossplane.io/v1
 kind: Composition
 metadata:
-  name: function-example
+  name: grsf-lic-pipeline
 spec:
   compositeTypeRef:
     apiVersion: example.crossplane.io/v1
     kind: XR
   mode: Pipeline
   pipeline:
-  - step: run-the-template
+  - step: run-the-dummy-function
     functionRef:
-      name: grsf-lic
+      name: function-dummy
     input:
-      apiVersion: template.fn.crossplane.io/v1beta1
-      kind: Input
-      email: "zahid.iqbal.marth.1998@gmail.com"
+      apiVersion: dummy.fn.crossplane.io/v1beta1
+      kind: Response
+      response:
+        value: true
+
+  # - step: run-the-template
+  #   functionRef:
+  #     name: grsf-lic
+  #   input:
+  #     apiVersion: template.fn.crossplane.io/v1beta1
+  #     kind: Input
+  #     email: "zahid.iqbal.marth.1998@gmail.com"
