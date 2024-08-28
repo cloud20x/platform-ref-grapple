@@ -1,21 +1,24 @@
 apiVersion: apiextensions.crossplane.io/v1
 kind: Composition
 metadata:
-  name: grsf-lic-pipeline
+  name: gr.grsf.grpl.io
+  labels:
+    crossplane.io/xrd: compositegrappleresources.grsf.grpl.io
+    provider: gr
 spec:
   compositeTypeRef:
-    apiVersion: example.crossplane.io/v1
-    kind: XR
+    apiVersion: grsf.grpl.io/v1alpha1
+    kind: CompositeGrappleResource
   mode: Pipeline
   pipeline:
   - step: run-the-dummy-function
     functionRef:
-      name: function-dummy
-    input:
-      apiVersion: dummy.fn.crossplane.io/v1beta1
-      kind: Response
-      response:
-        value: true
+      name: crossplane-contrib-function-dummy
+    # input:
+    #   apiVersion: dummy.fn.crossplane.io/v1beta1
+    #   kind: Response
+    #   response:
+    #     value: true
 
   # - step: run-the-template
   #   functionRef:
