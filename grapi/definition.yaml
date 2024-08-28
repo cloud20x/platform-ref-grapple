@@ -182,7 +182,7 @@ spec:
                 beimagetag:
                   description: |
                     Please specify here the image tag for the grapi (grapple API) base image.
-                    (Default: "0.2.4")
+                    (Default: "0.2.5")
                   type: string
                 autoscaling:
                   description: |
@@ -781,12 +781,6 @@ spec:
                             description: Provide prefix to avoid duplication
                             type: string
                           readonly:
-                            description: Generate only GET endpoints.
-                            type: boolean
-                          exclude:
-                            description: Exclude endpoints with provided regex.
-                            type: string
-                          include:
                             description: Only include endpoints with provided regex.
                             type: string
                 cacheconfigs:
