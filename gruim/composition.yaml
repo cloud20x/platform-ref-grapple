@@ -162,9 +162,9 @@ spec:
           toFieldPath: spec.forProvider.values.imagetag
         - fromFieldPath: spec.autoscaling
           toFieldPath: spec.forProvider.values.autoscaling
-        - fromFieldPath: spec.resources.runimages.spec
-          toFieldPath: spec.forProvider.values.resourcesui
         - fromFieldPath: spec.resources.deployimages.spec
+          toFieldPath: spec.forProvider.values.resourcesui
+        - fromFieldPath: spec.resources.runimages.spec
           toFieldPath: spec.forProvider.values.imgresourcesui
         - fromFieldPath: spec.uiimage
           toFieldPath: spec.forProvider.values.uiimage

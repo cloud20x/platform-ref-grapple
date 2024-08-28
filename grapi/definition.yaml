@@ -262,6 +262,11 @@ spec:
                           type: object
                           # allows to specify anything in the object... no verification whatsoever...
                           x-kubernetes-preserve-unknown-fields: true
+                resourcesNpmMem:
+                  description: |
+                    Please specify here the allowed memory to be used by the nodejs processes
+                    (Default: 1152)
+                  type: string
                 # improve the implementation of translations: https://wolke7.atlassian.net/browse/GSF-71
                 # translations:
                 #   description: 'Please specify whether translations shall be enabled for the grapi (grapple API)'
