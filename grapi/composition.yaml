@@ -51,6 +51,8 @@ spec:
             values:
               name: # patched
               asname: ""
+              # organization: ""
+              # email: ""
               grapiversion: "0.0.1"
               clusterdomain: ""
               dev: false
@@ -99,6 +101,18 @@ spec:
                     name: grsf-config
                     namespace: grpl-system
                     key: grapiversion
+              - name: organization_config
+                valueFrom:
+                  secretKeyRef: 
+                    name: grsf-config
+                    namespace: grpl-system
+                    key: organization
+              - name: email_config
+                valueFrom:
+                  secretKeyRef: 
+                    name: grsf-config
+                    namespace: grpl-system
+                    key: email
               - name: clusterdomain
                 valueFrom:
                   secretKeyRef: 
@@ -141,6 +155,12 @@ spec:
                     name: grsf-config
                     namespace: grpl-system
                     key: sslissuer
+              - name: GRAPPLE_LICENSE
+                valueFrom:
+                  secretKeyRef: 
+                    name: grsf-config
+                    namespace: grpl-system
+                    key: GRAPPLE_LICENSE
           writeConnectionSecretsToRef: 
             namespace: grpl-test
             name: myrelease-secret
@@ -170,6 +190,10 @@ spec:
                 fmt: "%s-grapi"
         - fromFieldPath: spec.asname
           toFieldPath: spec.forProvider.values.asname
+        - fromFieldPath: spec.organization
+          toFieldPath: spec.forProvider.values.organization
+        - fromFieldPath: spec.email
+          toFieldPath: spec.forProvider.values.email
         - fromFieldPath: spec.grapiversion
           toFieldPath: spec.forProvider.values.grapiversion
         - fromFieldPath: spec.clusterdomain

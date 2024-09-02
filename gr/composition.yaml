@@ -11,19 +11,23 @@ spec:
     kind: CompositeGrappleResource
   mode: Pipeline
   pipeline:
-  - step: run-the-dummy-function
+  - step: check-function-resource-readiness
     functionRef:
-      name: crossplane-contrib-function-dummy
-    # input:
-    #   apiVersion: dummy.fn.crossplane.io/v1beta1
-    #   kind: Response
-    #   response:
-    #     value: true
-
-  # - step: run-the-template
+      name: crossplane-contrib-function-auto-ready
+  # - step: run-the-dummy-function
   #   functionRef:
-  #     name: grsf-lic
-  #   input:
-  #     apiVersion: template.fn.crossplane.io/v1beta1
-  #     kind: Input
-  #     email: "zahid.iqbal.marth.1998@gmail.com"
+  #     name: crossplane-contrib-function-dummy
+  #   # input:
+  #   #   apiVersion: dummy.fn.crossplane.io/v1beta1
+  #   #   kind: Response
+  #   #   response:
+  #   #     value: true
+  - step: run-the-template
+    functionRef:
+      name: grpl-grsf-lic
+    input:
+      apiVersion: template.fn.crossplane.io/v1beta1
+      kind: Input
+      email: "zahid.iqbal.marth.1998@gmail.com"
+    # readinessChecks:
+    #   - type: None

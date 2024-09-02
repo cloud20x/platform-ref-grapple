@@ -88,6 +88,12 @@ spec:
                     name: grsf-config
                     namespace: grpl-system
                     key: uiimagetag
+              - name: GRAPPLE_LICENSE
+                valueFrom:
+                  secretKeyRef: 
+                    name: grsf-config
+                    namespace: grpl-system
+                    key: GRAPPLE_LICENSE
             # set: 
             #   - name: externalDatabase.host
             #     valueFrom: 
