@@ -52,7 +52,7 @@ spec:
     version: ">=v1.0.0-0"
   dependsOn:
     - function: docker.io/grpl/grsf-lic
-      version: ">=v0.1.8"
+      version: ">=v0.1.9"
     # - function: xpkg.upbound.io/crossplane-contrib/function-dummy
     #   version: ">=v0.2.1"
     - function: xpkg.upbound.io/crossplane-contrib/function-auto-ready

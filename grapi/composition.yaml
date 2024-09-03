@@ -59,8 +59,6 @@ spec:
               ingress: true
               ssl: false
               sslissuer: letsencrypt-prod-cloud20x
-              auth: false
-              auth_write_only: false
               disableexplorer: false
               automigrate: false
               buildimages: false
@@ -208,8 +206,6 @@ spec:
           toFieldPath: spec.forProvider.values.sslissuer
         - fromFieldPath: spec.auth
           toFieldPath: spec.forProvider.values.auth
-        - fromFieldPath: spec.auth_write_only
-          toFieldPath: spec.forProvider.values.auth_write_only
         - fromFieldPath: spec.automigrate
           toFieldPath: spec.forProvider.values.automigrate
         - fromFieldPath: spec.autorestartgruim

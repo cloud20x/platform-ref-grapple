@@ -148,14 +148,48 @@ spec:
                   type: string
                 auth:
                   description: |
-                    Please specify here if authentication shall be enabled for the grapi (grapple API)
-                    (Default: false)
-                  type: boolean
-                auth_write_only:
-                  description: |
-                    Please specify here if authentication shall be enabled for write only endpoints on the grapi (grapple API)
-                    (Default: false)
-                  type: boolean
+                    Please define here the authenticatino settings for this grapi (grapple API)
+                  type: object
+                  properties:
+                    basic:
+                      description: |
+                        Please define here the basic authenticatino settings for this grapi (grapple API)
+                        LICENSE: Starter
+                      type: object
+                      properties:
+                        config:
+                          description: |
+                            Please specify here if basic authentication config for the grapi (grapple API)
+                            Example: '{"auth": true, "writeonly": true, "exclude": "/invoices"}'
+                            Requires ENV "Users" to exist - use "auth.basic.secretName" to create Users
+                            LICENSE: Starter
+                          type: string
+                        secretName:
+                          description: |
+                            Please specify here secret containing basic authentication credentials for this grapi (grapple API)
+                            Example: mysecret
+                            Example: kubectl create secret generic authusers --from-literal Users='[{"username": "grapple", "email": "info@grapple-solutions.com", "password": "mysecretpw", "realm": "random"}, {"username": "sales", "email": "sales@grapple-solutions.com", "password": "mysalespw", "realm": "random"}]'
+                            LICENSE: Starter
+                          type: string
+                    profile:
+                      description: |
+                        Please define here the basic authenticatino settings for this grapi (grapple API)
+                        LICENSE: Pro
+                        (TODO: NOT YET IMPLEMENTED)
+                      type: object
+                      properties:
+                        profile:
+                          type: string
+                          description: |
+                            Please define here the authentication profile for this grapi (grapple API)
+                            LICENSE: Pro
+                            (TODO: NOT YET IMPLEMENTED)
+                        settings:
+                          type: string
+                          description: |
+                            Please define here the authentication profile settings for this grapi (grapple API)
+                            LICENSE: Pro
+                            (TODO: NOT YET IMPLEMENTED)
                 buildimages:
                   description: |
                     Shall images be built (pre-baked) for this grapi (grapple API)?
