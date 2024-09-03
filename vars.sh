@@ -1,16 +1,16 @@
 CPSYS=grpl-system
 PACKAGE=grsf.xpkg
 CONFIGPKG=grpl/grsf
-VERSION=0.2.6
+VERSION=0.2.7
 TESTNS=grpl-test
 
 PROVIDERKUBERNETES=false
 PROVIDERHELM=true
 
 BEBASEIMAGE="grpl/grapi"
-BEBASEIMAGEVERSION="0.2.6"
+BEBASEIMAGEVERSION="0.2.7"
 UIBASEIMAGE="grpl/gruim"
-UIBASEIMAGEVERSION="0.2.6"
+UIBASEIMAGEVERSION="0.2.7"
 
 if [ "$(uname -s)" = "Darwin" ]; then 
     SED=gsed
