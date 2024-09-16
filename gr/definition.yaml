@@ -29,17 +29,31 @@ spec:
               description: |
                   Specification of the desired behavior of the grapple resource (gr). 
               properties:
-                namespace:
-                  description: |
-                    Define the namespace of the grapple resource
-                  type: string
-                type:
+                resource_kind:
                   description: | 
                     Type of the grapple resource
                     (Default: "gras")
                   type: string
-                name:
+                  default: gras
+                resource_name:
                   description: | 
                     Name of the grapple resource
                     (Default: "")
                   type: string
+                resource_namespace:
+                  description: |
+                    Define the namespace of the grapple resource
+                    (Default: "")
+                  type: string
+                resource_group:
+                  description: | 
+                    Resource group of the grapple resource
+                    (Default: "grsf.grpl.io")
+                  type: string
+                  default: "grsf.grpl.io"
+                resource_version:
+                  description: | 
+                    Resource Version of the grapple resource
+                    (Default: "v1alpha1")
+                  type: string
+                  default: "v1alpha1"
