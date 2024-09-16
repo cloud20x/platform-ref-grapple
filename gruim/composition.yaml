@@ -22,7 +22,7 @@ spec:
             chart:
               name: gruim
               repository: oci://public.ecr.aws/p7h7z5g3
-              version: 0.2.7
+              version: 0.2.8
             namespace: # patched
             values:
               name: # patched
@@ -39,7 +39,7 @@ spec:
               deployimages: false
               imagetag: ""
               # uiimage: grpl/gruim
-              # uiimagetag: 0.2.7
+              # uiimagetag: 0.2.8
               uimodules: true
               monitoring: false
               mapi: ""
